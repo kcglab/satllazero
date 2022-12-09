@@ -7,6 +7,9 @@ Which is fully operational in space (see SATLLA-2, https://tinygs.com/satellite/
 The  SATLLA-0 project include both: software and hardware the pico satellite (and ground station).
 The project vision is to allow any science class (in high school or University) to experience “new space”  in a fraction of the price of existing solutions.
 
-
+Links:
+1. https://www.youtube.com/watch?v=bJ7NgBDLjMQ
+2. https://www.ifixit.com/Guide/SATLLA+2+DIY+KIT+Assembly/147004
+3. The we started (with Weather Baloons): https://www.youtube.com/watch?v=0xc7XjHUJkM&t=41s
 
 . Ariel University. 2023.
