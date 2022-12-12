@@ -1,0 +1,65 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"random": "cpp",
+			"limits": "cpp",
+			"__locale": "cpp",
+			"__bit_reference": "cpp",
+			"__hash_table": "cpp",
+			"__split_buffer": "cpp",
+			"__tree": "cpp",
+			"array": "cpp",
+			"deque": "cpp",
+			"filesystem": "cpp",
+			"initializer_list": "cpp",
+			"iterator": "cpp",
+			"map": "cpp",
+			"set": "cpp",
+			"string": "cpp",
+			"string_view": "cpp",
+			"unordered_map": "cpp",
+			"unordered_set": "cpp",
+			"vector": "cpp",
+			"ios": "cpp",
+			"functional": "cpp",
+			"system_error": "cpp",
+			"chrono": "cpp",
+			"locale": "cpp",
+			"stdexcept": "cpp",
+			"__string": "cpp",
+			"ostream": "cpp",
+			"*.tcc": "cpp",
+			"thread": "cpp",
+			"queue": "cpp",
+			"stack": "cpp",
+			"iomanip": "cpp",
+			"__mutex_base": "cpp",
+			"atomic": "cpp",
+			"condition_variable": "cpp",
+			"fstream": "cpp",
+			"istream": "cpp",
+			"memory": "cpp",
+			"tuple": "cpp",
+			"__node_handle": "cpp",
+			"variant": "cpp",
+			"utility": "cpp",
+			"typeinfo": "cpp",
+			"bitset": "cpp",
+			"*.tpp": "cpp",
+			"compare": "cpp",
+			"ratio": "cpp",
+			"type_traits": "cpp"
+		},
+		"cSpell.words": [
+			"imread",
+			"imwrite",
+			"raspistill",
+			"raspivid"
+		]
+	}
+}
