@@ -1,48 +1,15 @@
-# SATLLA-4
-K&CG Satellite Project 2022
-This project is about K&CG SATTLA-4 pico satellite, version of 2022
+# SATLLA-0 
+SATLLA-0 (aka satllazero) is an Open Source Project dedicated
+to a complete design of Pico-Satellites.
+The overall vision is to allow researchers as well as 12K to be able to 
+construct a fully operational pico satellite model - which is based on a proven design
+Which is fully operational in space (see SATLLA-2, https://tinygs.com/satellite/SATLLA-2B).
+The  SATLLA-0 project include both: software and hardware the pico satellite (and ground station).
+The project vision is to allow any science class (in high school or University) to experience “new space”  in a fraction of the price of existing solutions.
 
-## Arduino Libraries
-- https://github.com/LoRaTracker/SX1280
-- https://github.com/HelTecAutomation/Heltec_ESP32/tree/master/src/lora
-- https://github.com/mikalhart/TinyGPSPlus/releases
-- https://github.com/wizard97/ArduinoRingBuffer
-- https://github.com/greiman/SdFat
+Links:
+1. https://www.youtube.com/watch?v=bJ7NgBDLjMQ
+2. https://www.ifixit.com/Guide/SATLLA+2+DIY+KIT+Assembly/147004
+3. The we started (with Weather Baloons): https://www.youtube.com/watch?v=0xc7XjHUJkM&t=41s
 
-## VS Project
-The Arduino coding is using VS Code. It contains 3 main sub-folders.
-
-## SAT4_Master
-This contains the SAT master logic.
-
-## Computer Mission
-- https://github.com/ifryed/SatImageTransfer
-- https://github.com/ifryed/SatAlign
-
-**SAT4_Master.ino**
-
-## RPI Autostart
-sudo nano /lib/systemd/system/sat.service
-
-
-    [Unit]
-    Description=SAT
-    After=multi-user.target
-
-    [Service]
-    Type=idle
-    #ExecStart=/usr/bin/python3 -u /home/pi/git/satlla1/Pi/Main.py
-    ExecStart=sudo /bin/bash -c '/usr/bin/python3 -u /home/pi/git/satlla1/Pi/Main.py > /home/pi/git/satlla1/Pi/output.log 2>&1'
-    WorkingDirectory=/home/pi/git/satlla1/Pi/
-    #StandardOutput=inherit
-    #StandardError=inherit
-    Restart=always
-    User=pi
-
-    [Install]
-    WantedBy=multi-user.target
-
-
-sudo systemctl daemon-reload
-
-sudo systemctl enable sat.service
+. Ariel University. 2023.
