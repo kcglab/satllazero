@@ -1,0 +1,16 @@
+#!/bin/bash
+sudo apt update
+sudo apt upgrade
+sudo apt install python3-pip
+sudo apt install python3-rpi.gpio
+sudo apt install imagemagic
+sudo apt install gpac
+sudo apt install git
+sudo apt install libatlas3-base
+sudo apt install python3-numpy
+sudo apt install python3-scipy
+sudo apt install libopencv-dev
+sudo apt install python3-opencv
+sudo apt install python3-camera
+
+sudo pip3 install requests imutils zmq uptime Pillow smbus

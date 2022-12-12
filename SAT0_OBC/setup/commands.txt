@@ -1,0 +1,105 @@
+## cmdline.txt:
+# enable serial0
+sudo nano /boot/cmdline.txt
+remove the line:
+-> console=serial0,115200
+and save , reboot for changes to take effect.
+
+## config.txt:
+# update /boot/config.txt
+
+## Set Pi setting via config:
+sudo raspi-config
+1. passwd
+2. 1->S1 (Wireless)
+3. 1->S5->B2 (Boot)
+4. 6->A1 (Expand Filesystem)
+
+## Increase swap
+sudo dphys-swapfile swapoff
+sudo nano /etc/dphys-swapfile
+modify the variable CONF_SWAPSIZE:
+CONF_SWAPSIZE=1024
+sudo dphys-swapfile setup
+sudo dphys-swapfile swapon
+
+sudo apt update
+sudo apt-get update
+sudo apt install git
+
+sudo apt install python3-pip
+python3 -m pip install --upgrade pip
+sudo apt-get install libatlas-base-dev
+sudo apt install python3-picamera
+
+## Required for 'convert'
+sudo apt-get install imagemagick
+
+## Required for 'pillow'
+sudo apt install libjpeg-dev
+
+# to config opencv: 
+https://pimylifeup.com/raspberry-pi-opencv/
+
+One by one: (Use sudo as we run the app in sudo)
+sudo apt-get install ninja
+
+# Pip install libraries:
+sudo pip install -r ./SATLLA4/Pi/setup/requirements.txt
+
+# No need for this part:
+#sudo pip3 install opencv-python-headless==3.4.15.55 (same as opencv-python but without GUI functionality)
+# pip3 install opencv-python==3.4.16.57 (only contains main modules)
+# if crash add:
+# pip3 install opencv-python --no-cache-dir
+# somehow this was missing:
+# sudo apt-get install libwebp-dev
+# sudo apt install libtiff5
+sudo apt-get install pigpio
+#sudo pip3 install pigpio
+
+sudo crontab -e
+@reboot              /usr/bin/pigpiod
+
+# use this guide before clone https://devops.pingidentity.com/how-to/privateRepos/
+git clone https://github.com/kcglab/SATLLA4
+
+# How to save username and password in Git?
+git config --global credential.helper store
+
+
+sudo cp /SATLLA4/Pi/setup/sat.service /lib/systemd/system/.
+
+# or create the file:
+sudo nano /lib/systemd/system/sat.service
+
+[Unit]
+Description=SAT4
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=sudo /bin/bash -c '/usr/bin/python3 -u /home/pi/SATLLA4/Pi/Main.py > /home/pi/SATLLA4/Pi/applog.log 2>&1'
+WorkingDirectory=/home/pi/SATLLA4/Pi/
+#StandardOutput=inherit
+#StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+
+# Load the service
+sudo systemctl daemon-reload
+sudo systemctl enable sat.service
+sudo systemctl start sat
+sudo systemctl stop sat
+
+sudo systemctl restart sat
+tail -f satlog 
+
+## [Errno 13] could not open port /dev/serial0: [Errno 13] Permission denied: '/dev/serial0'
+# Probably not deleted this console=serial0,115200 from /boot/cmdline.txt
+$ sudo nano /boot/cmdline.txt
+
+
