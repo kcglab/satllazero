@@ -310,28 +310,6 @@ union battery_data_t
     uint8_t packet[BATTERY_PACKET_LENGTH]; // This array is used to push out through the LoRa module.
 };
 
-// #define COMMAND_HEADER_LENGTH 10
-// #define COMMAND_PACKET_LENGTH 60
-// #define COMMAND_DATA_LENGTH (COMMAND_PACKET_LENGTH - COMMAND_HEADER_LENGTH)
-
-// union command_data_t {
-//     struct
-//     {
-//         uint8_t cmd_code;                         // 1, Command Code
-//         uint8_t cmd_param1;                       // 2, Command Param1
-//         uint8_t cmd_param2;                       // 3, Command Param2
-//         uint8_t cmd_param3;                       // 4, Command Param3
-//         uint8_t cmd_param4;                       // 5, Command Param4
-//         uint8_t cmd_param5;                       // 6, Command Param5
-//         uint8_t cmd_param6;                       // 7, Command Param6
-//         uint8_t cmd_param7;                       // 8, Command Param7
-//         uint8_t cmd_chksum;                       // 9, Command Chksum
-//         uint8_t cmd_size;                         // 10, Command payload size
-//         uint8_t cmd_payload[COMMAND_DATA_LENGTH]; // 11. The Data
-//     };
-//     uint8_t packet[COMMAND_PACKET_LENGTH]; // This array is used to push out through the LoRa module.
-// };
-
 #define COMMAND_HEADER_LENGTH 4
 #define COMMAND_PACKET_LENGTH 30
 #define COMMAND_DATA_LENGTH (COMMAND_PACKET_LENGTH - COMMAND_HEADER_LENGTH)
