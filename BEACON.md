@@ -1,7 +1,7 @@
 # SATLLA0 Decode Long Beacon:
 
 ## Description:
-SATLLA0 has long and short beacons. The long beacon is followed by 4 short beacons. Each beacon is send in a period of 45 seconds to 1 minute depends on the battery power.
+SATLLA0 has long and short beacons. Each beacon is sent in a period of 45 seconds to 1 minute depends on the battery power.
 
 ## Short Beacon:
 - Short beacon consists of 12  bytes:
@@ -16,7 +16,7 @@ SATLLA0 has long and short beacons. The long beacon is followed by 4 short beaco
 > int8_t sns_ntc2;         // 9, Temperature \
 
 ## Long Beacon:
-- Long beacon consists of an header (9 bytes) and payload (dynamic size).
+- Long beacon consists of a header (9 bytes) and payload (dynamic size).
 - The type of the beacon located in the 3rd byte of the message.
 - SATLLA0 has messages that aren't beacons. Nevertheless, all of them has the same structure: 9 byte header and rest is payload.
 - The header is as follows:
@@ -35,7 +35,6 @@ SATLLA0 has long and short beacons. The long beacon is followed by 4 short beaco
 -- sns_data_t 16 bytes
 -- battery_data_t 12 bytes
 -- sd_data_t 4 bytes
-- msg_size may shows 50 bytes. It's a mistake. It should be 52 bytes.
 
 - gps_data_t:
 > date_time_t gps_date_time; // 1, Date/Time \
