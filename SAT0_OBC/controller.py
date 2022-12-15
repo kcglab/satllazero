@@ -170,93 +170,6 @@ class Controller:
                 self.state = StateTypes.STATE_READY.value
                 print("*** CmdTypes.CMD_TAKE_PHOTO Done ***")
 
-            elif command == CmdTypes.CMD_SIT.value:  # 5
-                print("*** CmdTypes.CMD_SIT ***")
-                # set busy
-                self.state = StateTypes.STATE_BUSY.value
-                self.serial.sendMsg(bytearray([ApiTypes.API_ACK.value]))
-
-                # update indexes
-                # picCount = int(config.get('mission', 'picCount'))
-                missionCount = int(config.get("mission", "missionCount"))
-                config.set("mission", "missionCount", str(missionCount + 1))
-                # config.set('mission', 'picCount', str(picCount + 1))
-                self.saveConfigFile()
-
-                # make mission folder
-                out_fld = f"./outbox/{missionCount}"
-                if not os.path.exists(out_fld):
-                    os.makedirs(out_fld, exist_ok=True)
-
-                print(f'capure_image(out_fld={out_fld})')
-                from SatImageTransfer import capure_image
-                capure_image.CaptureImage(out_fld)
-
-                # set ready
-                self.state = StateTypes.STATE_READY.value
-                print("*** CmdTypes.CMD_SIT Done ***")
-
-            elif command == CmdTypes.CMD_SEEK_LASER.value:  # 6
-                print("*** CmdTypes.CMD_SEEK_LASER ***")
-                self.state = StateTypes.STATE_BUSY.value
-                self.serial.sendMsg(bytearray([ApiTypes.API_ACK.value]))
-
-                missionCount = int(config.get("mission", "missionCount"))
-                config.set("mission", "missionCount", str(missionCount + 1))
-                self.saveConfigFile()
-
-                # make mission folder
-                out_fld = f"./outbox/{missionCount}"
-                if not os.path.exists(out_fld):
-                    os.makedirs(out_fld, exist_ok=True)
-
-                # set parameters
-                freq = paramsList[1]/float(10) if paramsListLen > 1 else 2.0
-                threshold = paramsList[2] / \
-                    float(10) if paramsListLen > 2 else 1.0
-                timeout = paramsList[3] if paramsListLen > 3 else 45
-
-                print(
-                    f'satAlign(freq={freq}, out_fld={out_fld}, threshold={threshold}, timeout={timeout})')
-                from SatAlign import sat_align
-                sat_align.satAlign(freq, out_fld, threshold, timeout)
-
-                self.state = StateTypes.STATE_READY.value
-                print("*** CmdTypes.CMD_SEEK_LASER Done ***")
-
-            elif command == CmdTypes.CMD_RWCS.value:  # 7 Reaction Wheel Control System
-                print("*** CmdTypes.CMD_RWCS ***")
-                self.state = StateTypes.STATE_BUSY.value
-
-                self.serial.sendMsg(bytearray([ApiTypes.API_ACK.value]))
-
-                missionCount = int(config.get("mission", "missionCount"))
-                config.set("mission", "missionCount", str(missionCount + 1))
-                self.saveConfigFile()
-
-                import RPi.GPIO as GPIO
-                gpio_fet_pin = int(config.get("RWCS", "gpio_fet_pin"))
-                GPIO.setmode(GPIO.BCM)
-                GPIO.setup(gpio_fet_pin, GPIO.OUT)
-                GPIO.output(gpio_fet_pin, GPIO.HIGH)
-
-                # set parameters
-                desiredAngleX = paramsList[1] if paramsListLen > 1 else 0
-                desiredAngleY = paramsList[2] if paramsListLen > 2 else 0
-                desiredAngleZ = paramsList[3] if paramsListLen > 3 else 0
-                timeout = paramsList[4] if paramsListLen > 4 else 1
-
-                print(
-                    f'RWCS(desiredAngleX={desiredAngleX}, desiredAngleY={desiredAngleY}, desiredAngleZ={desiredAngleZ}), timeout={timeout}')
-                from RWCS import main_rwcs
-                main_rwcs.run(desiredAngleX, desiredAngleY,
-                              desiredAngleZ, timeout)
-
-                GPIO.output(gpio_fet_pin, GPIO.LOW)
-
-                self.state = StateTypes.STATE_READY.value
-                print("*** CmdTypes.CMD_RWCS Done ***")
-
             elif command == CmdTypes.CMD_ADSB.value:  # 14 ADSB log
                 print("*** CmdTypes.CMD_ADSB ***")
                 self.state = StateTypes.STATE_BUSY.value
@@ -382,11 +295,10 @@ class Controller:
         except:  # msgArrived
             exception_type, exception_object, exception_traceback = sys.exc_info()
             from traceback import format_tb
-            eror = format_tb(exception_traceback)[-1]
+            error = format_tb(exception_traceback)[-1]
             print()
-            print(exception_type, exception_object, eror)
-            
-            
+            print(exception_type, exception_object, error)
+
             self.state = StateTypes.STATE_READY.value
             # self.serial.sendMsg(bytearray([self.MISSION_ERR]))
 

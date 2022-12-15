@@ -42,9 +42,6 @@ class CmdTypes(Enum):
     CMD_POWER_ON = 3
 
     CMD_TAKE_PHOTO = 4  # take photo (smart)
-    CMD_SIT = 5  # Satellite Image Transfer
-    CMD_SEEK_LASER = 6  # seek laser
-    CMD_RWCS = 7  # Reaction Wheel Control System
     CMD_ADSB = 14  # ADSB log
     CMD_NEW_TAKE_PHOTO = 15
     CMD_UPLOAD_FILE = 16

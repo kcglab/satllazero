@@ -102,7 +102,7 @@
 - 7.9 Prepare Long/Short beacon
 
 ## 8. Send Beacon Func:
-- 8.1 If Stop Flag raised and not above IL, return
+- 8.1 If Stop Flag raised, return
 - 8.2 Send Short/Long beacon via LoRa 433/24
 =======
 1.1 RTC
@@ -126,7 +126,7 @@
 
 ## 2. Main Loop
 2.1 WD Heartbeat
-2.2 Read Babysiter Func
+2.2 Read Babysitter Func
 2.3 Check Battery Status Func 
 2.4 Set satellite mode Func (Based on battery status)
 2.5 If state is higher than panic, then:
@@ -153,7 +153,7 @@
 3.1.2 If received 433, break
 3.1.3 If received 2.4, break
 3.1.4 WD Heartbeat
-3.2 If break, handle message (2.4 or 433)
+3.2 If broken, handle message (2.4 or 433)
 3.3 If restart requested, wait 2 seconds and restart.
 
 ## 4. Sleep Delay Func
@@ -163,5 +163,4 @@
 4.1.3 If Lora 2.4 is On, Sleep
 4.1.4 If GPS is On, Sleep
 4.1.5 WD Heartbeat
-4.2 
 

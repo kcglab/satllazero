@@ -8,11 +8,11 @@ tags:
 
   authors:
 - name: Rony Ronen
-  orcid: 0000-0000-0000-0000
+  orcid: 0000-0002-1300-5236
   equal-contrib: true
   affiliation: 1
 - name: Boaz Ben Moshe
-  orcid: 0000-0000-0000-0000
+  orcid: 0000-0002-1580-5421
   equal-contrib: true 
   affiliation: 1
 
