@@ -21,7 +21,7 @@ Please submit bug reports and feature requests to the issue tracker on GitHub: [
 
 
 # Licence
-This program is released as open source software under the terms of [GPL3 License](https://github.com/kcglab/satllazero/LICENSE).
+This program is released as open source software under the terms of [GPL3 License](https://github.com/kcglab/satllazero/blob/dev/LICENSE).
 
 
 # Links
