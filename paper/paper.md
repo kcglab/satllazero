@@ -39,6 +39,8 @@ At the same time, using an existing software framework leads to a shorter develo
 
 # Figures
 
+![](https://github.com/kcglab/satllazero/figures/figure1_1.png)
+![](https://github.com/kcglab/satllazero/figures/figure2_1.png)
 
 # Acknowledgements
 
