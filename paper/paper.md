@@ -1,4 +1,51 @@
 ---
+title: 'Maelstrom: A Python package for identifying companions to pulsating stars from their light travel time variations'
+tags:
+  - Python
+  - astronomy
+  - variable stars
+authors:
+  - name: Daniel R. Hey
+    orcid: 0000-0003-3244-5357
+    affiliation: "1, 2"
+  - name: Simon J. Murphy
+    orcid: 0000-0002-5648-3107
+    affiliation: "1, 2"
+  - name: Daniel Foreman-Mackey
+    orcid: 0000-0002-9328-5652
+    affiliation: "3"
+  - name: Timothy R. Bedding
+    orcid: 0000-0001-5222-4661
+    affiliation: "1, 2"
+  - name: Benjamin J.S. Pope
+    orcid: 0000-0003-2595-9114
+    affiliation: "4,5"
+  - name: David W. Hogg
+    orcid: 0000-0003-2866-9403
+    affiliation: "4, 3, 5, 6"
+affiliations:
+ - name: School of Physics, Sydney Institute for Astronomy (SIfA), The University of Sydney, NSW 2006, Australia
+   index: 1
+ - name: Stellar Astrophysics Centre, Department of Physics and Astronomy, Aarhus University, DK-8000 Aarhus C, Denmark
+   index: 2
+ - name: Center for Computational Astrophysics, Flatiron Institute, 162 5th Ave, New York, NY 10010, USA
+   index: 3
+ - name: Center for Cosmology and Particle Physics, Department of PhysicsNew York University, 726 Broadway, New York, NY 10003, USA
+   index: 4
+ - name: Center for Data Science, New York University, 60 Fifth Ave, New York, NY 10011, USA
+   index: 5
+ - name: Max-Planck-Institut für Astronomie, Königstuhl 17, D-69117 Heidelberg
+   index: 6
+date: 28 January 2020
+bibliography: paper.bib
+
+# Optional fields if submitting to a AAS journal too, see this blog post:
+# https://blog.joss.theoj.org/2018/12/a-new-collaboration-with-aas-publishing
+aas-doi: 10.3847/1538-3881/ab7d38
+aas-journal: Astronomical Journal
+---
+
+---
 title: 'SATLLA0: A Flight Software Platform for Aerospace and STEM Education'
 tags:
   - Python
