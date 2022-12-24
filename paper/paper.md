@@ -20,6 +20,7 @@ affiliations:
 date: 19 Dec 2022
 bibliography: paper.bib
 ___
+
 # Summary
 Nanosatellites are becoming a preferred platform for testing innovative technologies and conducting academic research in space. Flight Software (FSW) is software that runs on a processor embedded in the satellite body. The software is responsible for managing satellite activity, data processing, and satellite health and safety, thus enabling the satellite to perform all actions necessary to achieve its scientific objective. 
 
