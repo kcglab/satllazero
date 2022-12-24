@@ -1,22 +1,22 @@
 ---
 title: 'SATLLA0: A Flight Software Platform for Aerospace and STEM Education'
 tags:
-- Python
-- Arduino
-- CubeSat
-- PicoSat
-  authors:
-- name: Rony Ronen
-  orcid: 0000-0002-1300-5236
-  affiliation: "1"
-- name: Boaz Ben Moshe
-  orcid: 00000-0002-1580-5421
-  affiliation: "1"
-  affiliations:
-- name: Computer Science Department, Ariel University, 47100, Israel
-  index: 1
-  date: 19 Decemner 2022
-  bibliography: paper.bib
+  - Python
+  - Arduino
+  - CubeSat
+  - PicoSat
+authors:
+  - name: Rony Ronen
+    orcid: 0000-0002-1300-5236
+    affiliation: "1"
+  - name: Boaz Ben Moshe
+    orcid: 00000-0002-1580-5421
+    affiliation: "1"
+affiliations:
+  - name: Computer Science Department, Ariel University, 47100, Israel
+    index: 1
+date: 19 Decemner 2022
+bibliography: paper.bib
 ---
 
 # Summary
