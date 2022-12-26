@@ -5,6 +5,7 @@ tags:
   - Arduino
   - CubeSat
   - PicoSat
+  - New-space
 authors:
   - name: Rony Ronen
     orcid: 0000-0002-1300-5236
@@ -25,7 +26,7 @@ bibliography: paper.bib
 # Summary
 Nanosatellites are becoming a preferred platform for testing innovative technologies and conducting academic research in space. Flight Software (FSW) is software that runs on a processor embedded in the satellite body [@miranda2019comparative]. The software is responsible for managing satellite activity, data processing, and satellite health and safety, thus enabling the satellite to perform all actions necessary to achieve its scientific objective.
 
-SATLLA-0 is an open source platform for building and experimenting with laboratory nanosatellites for academics and school students. The platform is based on the flight software of the SATLLA-2B satellite, developed and built by the Nanosatellite Research Laboratory of Ariel University. The SATLLA-2B satellite was successfully launched on January 13, 2022 aboard a Falcon 9 launch vehicle.
+SATLLA-0 is an open source platform for building and experimenting with laboratory nanosatellites for academics and school students. The platform is based on the flight software of the SATLLA-2B satellite, developed and built by the Nanosatellite Research Laboratory of Ariel University. The SATLLA-2B pico-satellite was successfully launched on January 13, 2022 on board a Falcon 9 launch vehicle. Since launched, SATLLA-2B is fully operational and its messages are being received on a daily basis by a large set of TinyGS.com users.
 
 SATLLA-0 is divided into three main libraries, with the main library, SAT0_Master, responsible for the ongoing operation of the satellite, the SAT0_OBC library responsible for the operation of the satellite's research objective, and the SAT0_Ground library responsible for transmitting telecommand to the satellite and receiving satellite transmissions and routing the data for further analysis.
 
@@ -53,7 +54,9 @@ An overview of the SATLLA-2 power, data, and radio frequency interfaces (RF) is 
 For a full documentation of `SATLLA-0`, the reader is referred to our [GitHub page](https://github.com/kcglab/satllazero).
 
 
-# Acknowledgemen
+# Acknowledgement
 The authors acknowledge the great work and dedication of the entire SATLLA team and the support of the Department of Computer Science and Mathematics at Ariel University. Special thanks to the students who participated in the mission design for the nanosatellite: Zachi Ben-Shitrit, Assaf Chia, Shaya Sonnenberg, Shai Aharon, Michael Twito, Revital Marble, and Aharon Got. This work has been partially supported by the Ariel Cyber Innovation Center.
 
 # References
+
+
