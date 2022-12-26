@@ -242,10 +242,10 @@ class Controller:
                     os.makedirs(out_fld, exist_ok=True)
 
                 # execute mission with parameters:
-                from SatImageTaking import picture_test
-                print("Started picture_Test main")
-                picture_test.main(out_fld, paramsList[1:])
-                print("Finished picture_Test main")
+                from SatImageTaking import start_service
+                print("Started start_service main")
+                start_service.main(out_fld, paramsList[1:])
+                print("Finished start_service main")
                 # finished executing mission:
                 self.state = StateTypes.STATE_READY.value
                 print("*** CmdTypes.CMD_NEW_TAKE_PHOTO Done ***")
