@@ -6,6 +6,7 @@ tags:
   - CubeSat
   - PicoSat
   - New-space
+  - Lora
 authors:
   - name: Rony Ronen
     orcid: 0000-0002-1300-5236
