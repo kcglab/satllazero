@@ -10,8 +10,38 @@ The SATLLA-0 project includes both the software and hardware of the pico satelli
 The vision of the project is to enable any science class (in high school or university) to experience the "new space" at a fraction of the price of existing solutions.
 
 
+# Repository Structure
+The repo is structured as follows:
++ software: The flight software is divided into three sub-folders:
+  + SAT0_Ground: The ground station module written in Arduino.
+  + SAT0_Master: The satellite main computer module written in Arduino.
+  + SAT0_OBC: The on-board computer (OBC) module written in Python.
++ hardware: Contains the hardware schematics of the satellite.
++ MD: Contains MD files describing the satellite commands, beacons and bill of materials (BOM).
++ stl: Contains 3D sketches.
++ paper: Contains the JOSS submission paper.
+
+
+# Description
+The SATLLA-0 core flight system is an open-source flight software used by the SATLLA-2B satellite. The library was designed as a starting point for academic institutions or schools that want to build or experiment with a laboratory or functional nanosatellite. As mentioned earlier, the system is divided into three parts. The main library contains the satellite's flight software, written in Arduino. Arduino is a C/C++ based programming language that is open source and easy to learn. The main library developed for the Teensy 3.x/4.x microcontroller family, which is the main microprocessor unit (MPU) of the SATLLA-2B nanosatellite. However, the library can be compiled for other microcontrollers using the definitions available in the library.
+
+
+# Features
+The SATLLA-0 flight software platform contains the following main features:
++ A functional nanosatellites based on a Teansy microcontroller.
++ An onboard computer to handle research activities based on RaspberryPi.
++ A functional ground station based on ESP32 board.
+
+
 # Installation
 SATLLA-0 is written in Arduino, and can be installed via Arduino, Teensyduino or any other IDE supporting Arduino.
+
+## Supported Hardware
+A list of all the hardware required to assemble a functional nanosatellite is available [here](https://github.com/kcglab/satllazero/blob/main/MD/bom.MD).
+The following boards are being used in this repository:
++ SAT0_Ground: WiFi LoRa ESP32 from Heltec or TTGO.
++ SAT0_Master: Teensy 3.6/4.1 microcontroller.
++ SAT0_OBC: RPI-Zero or RPI-Zero-W.
 
 
 # For more info
@@ -23,7 +53,7 @@ Please submit bug reports and feature requests to the issue tracker on GitHub: [
 
 
 # Licence
-This program is released as open source software under the terms of [GPL3 License](https://github.com/kcglab/satllazero/blob/dev/LICENSE).
+This program is released as open source software under the terms of [GPL3 License](https://github.com/kcglab/satllazero/blob/main/LICENSE).
 
 
 # Links
