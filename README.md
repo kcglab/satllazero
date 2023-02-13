@@ -28,10 +28,20 @@ The SATLLA-0 core flight system is an open-source flight software used by the SA
 
 
 # Features
-The SATLLA-0 flight software platform contains the following main features:
-+ A functional nanosatellites based on a Teansy microcontroller.
-+ An onboard computer to handle research activities based on RaspberryPi.
-+ A functional ground station based on ESP32 board.
+The SATLLA-0 flight software platform includes the following key features:
++ A functional nanosatellite based on a Teansy microcontroller which supports the following subsystems: 
+  + 2P structure.
+  + Electrical Power System (EPS).
+  + Telecommand and communications based on LoRa UHF and S-band. 
+  + GPS.
+  + Inertial Measurement Unit (IMU).
+  + Thermistors (Temperature).
+  + High-power array LED.
++ An on-board computer (OBC) for research activities based on a RaspberryPi Zerro.
+  + Linux-based 
+  + Integrated camera.
+  + Variety of payloads including Attitude Determination and Control System (ADCS) based on reaction wheels, an Automatic Dependent Surveillance-Broadcast (ADS-B) receiver for surveillance aircraft.
++ A functional ground station based on an ESP32 board.
 
 
 # Installation
