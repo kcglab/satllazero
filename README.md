@@ -1,4 +1,5 @@
 [![DOI](https://zenodo.org/badge/575807899.svg)](https://zenodo.org/badge/latestdoi/575807899)
+[![status](https://joss.theoj.org/papers/af50648087de6186bd6eb99014658ada/status.svg)](https://joss.theoj.org/papers/af50648087de6186bd6eb99014658ada)
 
 # Overview
 **SATLLA-0** (also known as satllazero) is an open source project dedicated to the development of a complete pico-satellite.
@@ -60,5 +61,10 @@ This program is released as open source software under the terms of [GPL3 Licens
 1. A great place to learn more on SATLLA project: [SATLLA Channel](https://www.youtube.com/watch?v=bJ7NgBDLjMQ)
 2. SATLLA 2 DIY KIT Assembly [iFixIt Build Instructions](https://www.ifixit.com/Guide/SATLLA+2+DIY+KIT+Assembly/147004)
 3. A good starting point is to use a Weather Balloons: [Extreme Long-RAnge Wi-Fi](https://www.youtube.com/watch?v=0xc7XjHUJkM&t=41s)
+
+#Citation
+If you'd like to cite us in a project or publication, please include a reference to the JOSS paper:
+*** Pre Review ***
+
 
 Ariel University. 2023.
