@@ -69,7 +69,6 @@ jobs:
       - name: Compile examples
         uses: arduino/compile-sketches@main
         with:
-          fqbn: ${{ matrix.board.fqbn }}
+          fqbn: ${{ matrix.board.fqbn }} ${{ matrix.sketch }}
           platforms: ${{ matrix.board.platforms }}
           enable-deltas-report: true
-          sketches-report-path: ${{ matrix.sketch }};
