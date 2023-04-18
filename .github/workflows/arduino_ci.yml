@@ -41,6 +41,9 @@ jobs:
           sudo ./TeensyduinoInstall.linux64 --dir=/usr/local/share/arduino;
           rm ./TeensyduinoInstall.linux64;
 
+      - name: Remove Teensy Loader Trigger
+        run: sudo python ./.github/workflows/remove_teensyloader.py $IDE_LOCATION/hardware/teensy/avr/platform.txt
+
       # We use the `arduino/setup-arduino-cli` action to install and
       # configure the Arduino CLI on the system.
       - name: Setup Arduino CLI

@@ -806,7 +806,7 @@ int8_t handle_auto_tasks()
         uint8_t radio = 0x00; // 433
         prepare_and_send_ld_packet(mission, file_index, message_len, radio);
 #endif
-    }
+    } 
     else if (auto_task > WEEKS_4)
     {
         PRINTLN("Func: handle_auto_tasks()");
