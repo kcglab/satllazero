@@ -69,8 +69,9 @@ jobs:
       - name: Compile examples
         uses: arduino/compile-sketches@main
         with:
+          cli-compile-flags: |
+              - --warnings="none"
           fqbn: ${{ matrix.board.fqbn }}
           platforms: ${{ matrix.board.platforms }}
           enable-deltas-report: true
           sketch-paths: ${{ matrix.sketch }}
-          cli-compile-flags: Wno-error
