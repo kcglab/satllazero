@@ -41,7 +41,7 @@ jobs:
           arduino-cli config init;
           arduino-cli config set library.enable_unsafe_install true;
           arduino-cli core update-index --additional-urls https://dl.espressif.com/dl/package_esp32_index.json
-          arduino-cli core install esp32:esp32@2.0.7 --additional-urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
+          arduino-cli core install esp32:esp32@2.0.2 --additional-urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
           
 
       - name: Install libraries
