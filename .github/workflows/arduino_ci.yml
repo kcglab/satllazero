@@ -56,6 +56,7 @@ jobs:
           arduino-cli lib install --git-url https://github.com/wizard97/Embedded_RingBuf_CPP.git;
           arduino-cli lib install --git-url https://github.com/mikalhart/TinyGPSPlus.git;
           arduino-cli lib install --git-url https://github.com/sparkfun/SparkFun_BQ27441_Arduino_Library.git;
+          arduino-cli lib install --git-url https://github.com/jgromes/RadioLib.git;
 
 #      - name: Teensy 3.5
 #        run: arduino --verify --board teensy:avr:teensy35:usb=${{ matrix.usb_mode }},speed=120,opt=o2std,keys=en-us ${{ matrix.sketch }};
