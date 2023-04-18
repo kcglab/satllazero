@@ -16,7 +16,7 @@ jobs:
         compilation: ['Serial: SAT0_Master']
         include:
           - compilation: 'Serial: SAT0_Master'
-            sketch: "$IDE_LOCATION/software/SAT0_Master/SAT0_Master.ino"
+            sketch: "./software/SAT0_Master/SAT0_Master.ino"
             usb_mode: serial
     
     steps:
