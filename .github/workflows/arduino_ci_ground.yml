@@ -1,4 +1,4 @@
-name: build
+name: build SAT0_Ground
 
 on: [push, pull_request]
 
@@ -42,6 +42,9 @@ jobs:
           arduino-cli config set library.enable_unsafe_install true;
           arduino-cli core update-index --additional-urls https://dl.espressif.com/dl/package_esp32_index.json
           arduino-cli core install esp32:esp32 --additional-urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
+
+      - name: Install ESP32 platform dependencies
+        run: pip3 install pyserial
 
       - name: Install libraries
         run: |

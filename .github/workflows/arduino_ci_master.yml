@@ -1,4 +1,4 @@
-name: build
+name: build SAT0_Master
 
 on: [push, pull_request]
 
