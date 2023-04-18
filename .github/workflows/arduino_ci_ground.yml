@@ -59,4 +59,4 @@ jobs:
           arduino-cli lib install --git-url https://github.com/jbuszkie/HTTPSRedirect.git;
 
       - name: ESP32
-        run: arduino --verify ${{ matrix.sketch }};
+        run: arduino --verify esp32:esp32:esp32 ${{ matrix.sketch }};
