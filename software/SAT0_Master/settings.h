@@ -59,7 +59,7 @@ const char TIME_[] = (__TIME__ "");
 #define MODELED_ENABLE 1        // 0=Off, 1=On <- // Mode LED
 #ifdef ARDUINO_TEENSY41         // T4.1 Support WDT_T4
 #define WDT_ENABLE 1            // 0=Off, 1=On <- // WDT_T4
-#elif                           // Else, On board WD
+#else                           // Else, On board WD
 #define WD_MAX6369_ENABLE 1     // 0=Off, 1=On <- // Watchdog
 #endif                          //
 #define MAINLED_ENABLE 1        // 0=Off, 1=On <- // Main LED
