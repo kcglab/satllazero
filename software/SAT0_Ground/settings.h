@@ -42,7 +42,7 @@ char firmware_version[14 + 1] = {0};
 
 #if (DEVCIE == BOARD_HELTEC)    // Heltec
 #define GPS_ENABLE 0            // 0=Off, 1=On, 2 : Serial
-#define LCD_SSD 1               // 0=Off, 1=On
+#define LCD_SSD 0               // 0=Off, 1=On
 #define AXP20_ENABLE 0          // 0=Off, 1=On
 #define LORA_E22_ENABLE 0       // 0=Off, 1=On
 #define LORA_SX126X_ENABLE 0    // 0=Off, 1=On
