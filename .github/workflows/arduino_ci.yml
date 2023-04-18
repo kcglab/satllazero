@@ -47,8 +47,7 @@ jobs:
         uses: arduino/setup-arduino-cli@v1.1.1
 
       - name: Install libraries
-        library:
-          enable_unsafe_install: true
+        enable_unsafe_install: true
         run: arduino-cli lib install --git-url https://github.com/wizard97/Embedded_RingBuf_CPP.git
 
 #      - name: Teensy 3.5
