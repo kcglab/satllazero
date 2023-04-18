@@ -52,7 +52,7 @@ jobs:
           arduino-cli lib install --git-url https://github.com/StuartsProjects/SX12XX-LoRa.git;
           arduino-cli lib install --git-url https://github.com/adafruit/Adafruit_BusIO.git;
           arduino-cli lib install --git-url https://github.com/adafruit/Adafruit_Sensor.git;
-          arduino-cli lib install --git-url https://github.com/bblanchon/ArduinoJson.git;
+          arduino-cli lib install --git-url https://github.com/arduino-libraries/Arduino_JSON.git;
           arduino-cli lib install --git-url https://github.com/adafruit/Adafruit_SSD1306.git;
           arduino-cli lib install --git-url https://github.com/HelTecAutomation/Heltec_ESP32.git;
           arduino-cli lib install --git-url https://github.com/sparkfun/SparkFun_SGP4_Arduino_Library.git;
