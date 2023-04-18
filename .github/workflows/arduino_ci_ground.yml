@@ -1,0 +1,80 @@
+name: build SAT0_Ground
+
+on:
+  pull_request:
+    branches:
+      - 'main'
+  push:
+    branches:
+      - 'main'
+
+env:
+  IDE_VERSION: 1.8.19
+  TEENSY_VERSION: 158
+  IDE_LOCATION: /usr/local/share/arduino
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        compilation: ['Serial: SAT0_Ground']
+        include:
+          - compilation: 'Serial: SAT0_Ground'
+            sketch: "./software/SAT0_Ground/SAT0_Ground.ino"
+            usb_mode: serial
+        board:
+          - fqbn: esp32:esp32:esp32
+            platforms: |
+              - name: esp32:esp32
+                source-url: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Arduino IDE
+        run: |
+          wget http://downloads.arduino.cc/arduino-$IDE_VERSION-linux64.tar.xz
+          tar xf arduino-$IDE_VERSION-linux64.tar.xz
+          sudo mv arduino-$IDE_VERSION /usr/local/share/arduino
+          sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
+          rm arduino-$IDE_VERSION-linux64.tar.xz
+
+      # We use the `arduino/setup-arduino-cli` action to install and
+      # configure the Arduino CLI on the system.
+      - name: Setup Arduino CLI
+        uses: arduino/setup-arduino-cli@v1.1.1
+
+      - name: CLI Init
+        run: |
+          arduino-cli config init;
+          arduino-cli config set library.enable_unsafe_install true;
+          arduino-cli core update-index --additional-urls https://dl.espressif.com/dl/package_esp32_index.json
+          arduino-cli core install esp32:esp32 --additional-urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
+
+      - name: Install libraries
+        run: |
+          arduino-cli lib install --git-url https://github.com/wizard97/Embedded_RingBuf_CPP.git;
+          arduino-cli lib install --git-url https://github.com/mikalhart/TinyGPSPlus.git;
+          arduino-cli lib install --git-url https://github.com/jgromes/RadioLib.git;
+          arduino-cli lib install --git-url https://github.com/StuartsProjects/SX12XX-LoRa.git;
+          arduino-cli lib install --git-url https://github.com/adafruit/Adafruit_BusIO.git;
+          arduino-cli lib install --git-url https://github.com/adafruit/Adafruit_Sensor.git;
+          arduino-cli lib install --git-url https://github.com/bblanchon/ArduinoJson.git;
+          arduino-cli lib install --git-url https://github.com/adafruit/Adafruit_SSD1306.git;
+          arduino-cli lib install --git-url https://github.com/HelTecAutomation/Heltec_ESP32.git;
+          arduino-cli lib install --git-url https://github.com/sparkfun/SparkFun_SGP4_Arduino_Library.git;
+          arduino-cli lib install --git-url https://github.com/shurillu/CTBot.git;
+          arduino-cli lib install --git-url https://github.com/jbuszkie/HTTPSRedirect.git;
+
+      - name: Compile ${{ matrix.sketch }}
+        uses: arduino/compile-sketches@main
+        with:
+          cli-compile-flags: |
+              - --warnings="none"
+          fqbn: ${{ matrix.board.fqbn }}
+          platforms: ${{ matrix.board.platforms }}
+          enable-deltas-report: true
+          sketch-paths: ${{ matrix.sketch }}

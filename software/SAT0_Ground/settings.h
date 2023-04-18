@@ -42,7 +42,7 @@ char firmware_version[14 + 1] = {0};
 
 #if (DEVCIE == BOARD_HELTEC)    // Heltec
 #define GPS_ENABLE 0            // 0=Off, 1=On, 2 : Serial
-#define LCD_SSD 1               // 0=Off, 1=On
+#define LCD_SSD 0               // 0=Off, 1=On
 #define AXP20_ENABLE 0          // 0=Off, 1=On
 #define LORA_E22_ENABLE 0       // 0=Off, 1=On
 #define LORA_SX126X_ENABLE 0    // 0=Off, 1=On
@@ -52,14 +52,14 @@ char firmware_version[14 + 1] = {0};
 #define LORA_SX1280_ENABLE 0    // 0=Off, 1=On
 #define LORA_RL_SX1278_ENABLE 1 // 0=Off, 1=On <-
 #define EEPROM_ENABLE 1         // 0=Off, 1=On
-#define WIFI_ENABLE 1           // 0=Off, 1=On
+#define WIFI_ENABLE 0           // 0=Off, 1=On
 #define DRIVE_ENABLE 0          // 0=Off, 1=On
 #define FIREBASE_ENABLE 0       // 0=Off, 1=On
-#define OTA_ENABLE 1            // 0=Off, 1=On
-#define TELEGRAM_ENABLE 1       // 0=Off, 1=On
+#define OTA_ENABLE 0            // 0=Off, 1=On
+#define TELEGRAM_ENABLE 0       // 0=Off, 1=On
 #define TELEGRAM_BOT_ENABLE 0   // 0=Off, 1=On
 #define TELEGRAM_CH_ENABLE 0    // 0=Off, 1=On
-#define TLE_ENABLE 1            // 0=Off, 1=On
+#define TLE_ENABLE 0            // 0=Off, 1=On
 #elif (DEVICE == BOARD_TEENSY)  // Teensy
 #define GPS_ENABLE 0            // 0=Off, 1=On, 2 : Serial
 #define LCD_SSD 0               // 0=Off, 1=On
