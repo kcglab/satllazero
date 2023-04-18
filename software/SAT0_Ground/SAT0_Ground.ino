@@ -63,8 +63,10 @@ void setup()
     memcpy(firmware_version + 8, buffer_g, 6);
     PRINT("FIRMWARE_VERSION:\t");
     PRINTLN(firmware_version);
-
+    
+#if LCD_SSD
     Wire.begin(OLED_SDA, OLED_SCL);
+#endif
 
 #if (DEVCIE == 1)   // Teensy
     SPI.setSCK(14); // For teensy
