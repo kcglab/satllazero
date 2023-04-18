@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        compilation: ['Serial: SAT0']
+        compilation: ['Serial: SAT0_Master']
         include:
           - compilation: 'Serial: SAT0_Master'
             sketch: "./software/SAT0_Master/SAT0_Master.ino"
@@ -45,9 +45,6 @@ jobs:
       # configure the Arduino CLI on the system.
       - name: Setup Arduino CLI
         uses: arduino/setup-arduino-cli@v1.1.1
-
-      - name: Set CLI flags
-        run: arduino-cli config set enable_unsafe_install true
 
       - name: Install libraries
         run: arduino-cli lib install --git-url https://github.com/wizard97/Embedded_RingBuf_CPP.git
