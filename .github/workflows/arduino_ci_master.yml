@@ -75,4 +75,4 @@ jobs:
       - name: Teensy 4.1
         run: |
           arduino-cli lib install --git-url https://github.com/tonton81/WDT_T4.git;
-          arduino --verify --board heltec_wifi_lora_32_V2:usb=${{ matrix.usb_mode }},speed=240,opt=o2std,keys=en-us ${{ matrix.sketch }};
+          arduino --verify --board teensy:avr:teensy41:usb=${{ matrix.usb_mode }},speed=600,opt=o2std,keys=en-us ${{ matrix.sketch }};
