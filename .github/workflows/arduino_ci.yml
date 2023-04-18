@@ -13,9 +13,9 @@ jobs:
 
     strategy:
       matrix:
-        compilation: ['Serial: Blank Sketch']
+        compilation: ['Serial: SAT0_Master']
         include:
-          - compilation: 'Serial: Blank Sketch'
+          - compilation: 'Serial: SAT0_Master'
             sketch: "$IDE_LOCATION/software/SAT0_Master/SAT0_Master.ino"
             usb_mode: serial
     
@@ -38,14 +38,8 @@ jobs:
           sudo ./TeensyduinoInstall.linux64 --dir=/usr/local/share/arduino;
           rm ./TeensyduinoInstall.linux64;
 
-      - name: Copy Teensy XInput Files
-        run: sudo \cp -r teensy $IDE_LOCATION/hardware;
-
       - name: Remove Teensy Loader Trigger
         run: sudo python ./.github/workflows/remove_teensyloader.py $IDE_LOCATION/hardware/teensy/avr/platform.txt
-
-      - name: Teensy LC
-        run: arduino --verify --board teensy:avr:teensyLC:usb=${{ matrix.usb_mode }},speed=48,opt=o2std,keys=en-us ${{ matrix.sketch }};
 
       - name: Teensy 3.5
         run: arduino --verify --board teensy:avr:teensy35:usb=${{ matrix.usb_mode }},speed=120,opt=o2std,keys=en-us ${{ matrix.sketch }};
