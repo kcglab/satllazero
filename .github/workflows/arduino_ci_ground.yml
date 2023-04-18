@@ -41,7 +41,7 @@ jobs:
           arduino-cli config init;
           arduino-cli config set library.enable_unsafe_install true;
           arduino-cli core update-index --additional-urls https://espressif.github.io/arduino-esp32/package_esp32_index.json;
-          arduino-cli core install esp32:esp32;
+          arduino-cli core install esp32:heltec_wifi_lora_32_V2;
           
 
       - name: Install libraries
