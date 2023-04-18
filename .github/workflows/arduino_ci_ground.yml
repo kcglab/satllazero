@@ -1,0 +1,57 @@
+name: build
+
+on: [push, pull_request]
+
+env:
+  IDE_VERSION: 1.8.19
+  TEENSY_VERSION: 158
+  IDE_LOCATION: /usr/local/share/arduino
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        compilation: ['Serial: SAT0_Ground']
+        include:
+          - compilation: 'Serial: SAT0_Ground'
+            sketch: "./software/SAT0_Ground/SAT0_Ground.ino"
+            usb_mode: serial
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Arduino IDE
+        run: |
+          wget http://downloads.arduino.cc/arduino-$IDE_VERSION-linux64.tar.xz
+          tar xf arduino-$IDE_VERSION-linux64.tar.xz
+          sudo mv arduino-$IDE_VERSION /usr/local/share/arduino
+          sudo ln -s /usr/local/share/arduino/arduino /usr/local/bin/arduino
+          rm arduino-$IDE_VERSION-linux64.tar.xz
+
+      # We use the `arduino/setup-arduino-cli` action to install and
+      # configure the Arduino CLI on the system.
+      - name: Setup Arduino CLI
+        uses: arduino/setup-arduino-cli@v1.1.1
+
+      - name: CLI Init
+        run: |
+          arduino-cli config init;
+          arduino-cli config set library.enable_unsafe_install true;
+
+      - name: Install libraries
+        run: |
+          arduino-cli lib install --git-url https://github.com/wizard97/Embedded_RingBuf_CPP.git;
+          arduino-cli lib install --git-url https://github.com/mikalhart/TinyGPSPlus.git;
+          arduino-cli lib install --git-url https://github.com/sparkfun/SparkFun_BQ27441_Arduino_Library.git;
+          arduino-cli lib install --git-url https://github.com/jgromes/RadioLib.git;
+          arduino-cli lib install --git-url https://github.com/StuartsProjects/SX12XX-LoRa.git;
+          arduino-cli lib install --git-url https://github.com/adafruit/Adafruit_LSM6DS.git;
+          arduino-cli lib install --git-url https://github.com/adafruit/Adafruit_BusIO.git;
+          arduino-cli lib install --git-url https://github.com/adafruit/Adafruit_Sensor.git;
+          arduino-cli lib install --git-url https://github.com/adafruit/Adafruit_LIS3MDL.git;
+
+      - name: ESP32
+        run: arduino --verify --board teensy:avr:esp32:usb=${{ matrix.usb_mode }},speed=180,opt=o2std,keys=en-us ${{ matrix.sketch }};

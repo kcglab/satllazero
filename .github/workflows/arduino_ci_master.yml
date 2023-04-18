@@ -18,9 +18,9 @@ jobs:
           - compilation: 'Serial: SAT0_Master'
             sketch: "./software/SAT0_Master/SAT0_Master.ino"
             usb_mode: serial
-#          - compilation: 'Serial: SAT0_Ground'
-#            sketch: "./software/SAT0_Master/SAT0_Ground.ino"
-#            usb_mode: serial
+          - compilation: 'Serial: SAT0_Ground'
+            sketch: "./software/SAT0_Master/SAT0_Ground.ino"
+            usb_mode: serial
     
     steps:
       - name: Checkout
