@@ -63,16 +63,12 @@ jobs:
           arduino-cli lib install --git-url https://github.com/shurillu/CTBot.git;
           arduino-cli lib install --git-url https://github.com/jbuszkie/HTTPSRedirect.git;
 
-#      - name: ESP32
-#        run: arduino --verify --fqbn esp32:esp32:esp32 ${{ matrix.sketch }};
-
       - name: Compile ${{ matrix.sketch }}
         uses: arduino/compile-sketches@main
         with:
+          cli-compile-flags: |
+              - --warnings="none"
           fqbn: ${{ matrix.board.fqbn }}
           platforms: ${{ matrix.board.platforms }}
-          cli-compile-flags: |
-            - --build-property
-            - compiler.cpp.extra_flags=-Wno-error=unused-function -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wno-unused-parameter -Wno-sign-compare
           enable-deltas-report: true
           sketch-paths: ${{ matrix.sketch }}
