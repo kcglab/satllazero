@@ -47,7 +47,7 @@ jobs:
         uses: arduino/setup-arduino-cli@v1.1.1
 
       - name: CLI Init
-        run: arduino-cli config init |
+        run: arduino-cli config init
 
       - name: CLI Set
         run: arduino-cli config set library.enable_unsafe_install true
