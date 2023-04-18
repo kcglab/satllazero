@@ -47,7 +47,7 @@ jobs:
         uses: arduino/setup-arduino-cli@v1.1.1
 
       - name: Set CLI flags
-        run: arduino-cli config set library.enable_unsafe_install true
+        run: arduino-cli config set enable_unsafe_install true
 
       - name: Install libraries
         run: arduino-cli lib install --git-url https://github.com/wizard97/Embedded_RingBuf_CPP.git
