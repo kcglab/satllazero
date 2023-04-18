@@ -37,7 +37,7 @@ uint8_t lora_433_rx_buf[LORA_RX_TX_BYTE];
 uint8_t lora_433_rx_buf_size = 0;
 
 #define BW_433_SIZE 10
-const float bw_433_table[BW_433_SIZE] = {7.8, 10.4, 15.6, 20.8, 31.25, 41.7, 62.5, 125, 250, 500};
+const float bw_433_table[] = {7.8, 10.4, 15.6, 20.8, 31.25, 41.7, 62.5, 125, 250, 500};
 /* ============ */
 /* FAT          */
 /* ============ */
