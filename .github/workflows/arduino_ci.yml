@@ -47,13 +47,14 @@ jobs:
         uses: arduino/setup-arduino-cli@v1.1.1
 
       - name: CLI Init
-        run: arduino-cli config init
-
-      - name: CLI Set
-        run: arduino-cli config set library.enable_unsafe_install true
+        run: |
+          arduino-cli config init;
+          arduino-cli config set library.enable_unsafe_install true;
 
       - name: Install libraries
-        run: arduino-cli lib install --git-url https://github.com/wizard97/Embedded_RingBuf_CPP.git
+        run: |
+          arduino-cli lib install --git-url https://github.com/wizard97/Embedded_RingBuf_CPP.git;
+          arduino-cli lib install --git-url https://github.com/mikalhart/TinyGPSPlus.git;
 
 #      - name: Teensy 3.5
 #        run: arduino --verify --board teensy:avr:teensy35:usb=${{ matrix.usb_mode }},speed=120,opt=o2std,keys=en-us ${{ matrix.sketch }};
