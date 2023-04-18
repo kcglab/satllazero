@@ -58,6 +58,7 @@ jobs:
           arduino-cli lib install --git-url https://github.com/sparkfun/SparkFun_SGP4_Arduino_Library.git;
           arduino-cli lib install --git-url https://github.com/shurillu/CTBot.git;
           arduino-cli lib install --git-url https://github.com/jbuszkie/HTTPSRedirect.git;
+          arduino-cli lib install --git-url https://github.com/espressif/arduino-esp32/tree/master/libraries/Wire;
 
       - name: ESP32
         run: arduino --verify ${{ matrix.sketch }};
