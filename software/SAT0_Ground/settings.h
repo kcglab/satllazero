@@ -55,11 +55,11 @@ char firmware_version[14 + 1] = {0};
 #define WIFI_ENABLE 1           // 0=Off, 1=On
 #define DRIVE_ENABLE 0          // 0=Off, 1=On
 #define FIREBASE_ENABLE 0       // 0=Off, 1=On
-#define OTA_ENABLE 1            // 0=Off, 1=On
-#define TELEGRAM_ENABLE 1       // 0=Off, 1=On
+#define OTA_ENABLE 0            // 0=Off, 1=On
+#define TELEGRAM_ENABLE 0       // 0=Off, 1=On
 #define TELEGRAM_BOT_ENABLE 0   // 0=Off, 1=On
 #define TELEGRAM_CH_ENABLE 0    // 0=Off, 1=On
-#define TLE_ENABLE 1            // 0=Off, 1=On
+#define TLE_ENABLE 0            // 0=Off, 1=On
 #elif (DEVICE == BOARD_TEENSY)  // Teensy
 #define GPS_ENABLE 0            // 0=Off, 1=On, 2 : Serial
 #define LCD_SSD 0               // 0=Off, 1=On
