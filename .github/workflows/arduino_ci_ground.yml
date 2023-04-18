@@ -41,6 +41,7 @@ jobs:
           arduino-cli config init;
           arduino-cli config set library.enable_unsafe_install true;
           arduino-cli core update-index --additional-urls https://espressif.github.io/arduino-esp32/package_esp32_index.json;
+          arduino-cli board listall heltec_wifi_lora_32_V2;
 
       - name: Install libraries
         run: |
@@ -52,4 +53,4 @@ jobs:
           arduino-cli lib install --git-url https://github.com/adafruit/Adafruit_Sensor.git;
 
       - name: ESP32
-        run: arduino --verify --board espressif32:avr:heltec_wifi_lora_32_V2:usb=${{ matrix.usb_mode }},speed=240,opt=o2std,keys=en-us ${{ matrix.sketch }};
+        run: arduino --verify --board arduino:avr:heltec_wifi_lora_32_V2:usb=${{ matrix.usb_mode }},speed=240,opt=o2std,keys=en-us ${{ matrix.sketch }};
