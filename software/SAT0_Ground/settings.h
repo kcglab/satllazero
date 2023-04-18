@@ -52,7 +52,7 @@ char firmware_version[14 + 1] = {0};
 #define LORA_SX1280_ENABLE 0    // 0=Off, 1=On
 #define LORA_RL_SX1278_ENABLE 1 // 0=Off, 1=On <-
 #define EEPROM_ENABLE 1         // 0=Off, 1=On
-#define WIFI_ENABLE 1           // 0=Off, 1=On
+#define WIFI_ENABLE 0           // 0=Off, 1=On
 #define DRIVE_ENABLE 0          // 0=Off, 1=On
 #define FIREBASE_ENABLE 0       // 0=Off, 1=On
 #define OTA_ENABLE 0            // 0=Off, 1=On
