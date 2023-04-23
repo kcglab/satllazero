@@ -14,9 +14,9 @@ The vision of the project is to enable any science class (in high school or univ
 # Repository Structure
 The repo is structured as follows:
 + software: The flight software is divided into three sub-folders:
-  + SAT0_Ground: The ground station module written in Arduino.
-  + SAT0_Master: The satellite main computer module written in Arduino.
-  + SAT0_OBC: The on-board computer (OBC) module written in Python.
+  + SAT0_Ground: The ground station module written in Arduino [SAT0_Ground](/software/SAT0_Ground).
+  + SAT0_Master: The satellite main computer module written in Arduino [SAT0_Master](/software/SAT0_Master)
+  + SAT0_OBC: The on-board computer (OBC) module written in Python [SAT0_OBC](/software/SAT0_OBC).
 + hardware: Contains the hardware schematics of the satellite.
 + MD: Contains MD files describing the satellite commands, beacons and bill of materials (BOM).
 + stl: Contains 3D sketches.
