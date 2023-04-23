@@ -1,9 +1,6 @@
 name: build SAT0_Ground
 
 on:
-  pull_request:
-    branches:
-      - 'main'
   push:
     branches:
       - 'main'
