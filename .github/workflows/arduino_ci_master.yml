@@ -59,7 +59,7 @@ jobs:
           arduino-cli lib install --git-url https://github.com/wizard97/Embedded_RingBuf_CPP.git;
           arduino-cli lib install --git-url https://github.com/mikalhart/TinyGPSPlus.git;
           arduino-cli lib install --git-url https://github.com/sparkfun/SparkFun_BQ27441_Arduino_Library.git;
-          arduino-cli lib install --git-url https://github.com/jgromes/RadioLib.git;
+          arduino-cli lib install --git-url https://github.com/jgromes/RadioLib.git#5.5.0;
           arduino-cli lib install --git-url https://github.com/StuartsProjects/SX12XX-LoRa.git;
           arduino-cli lib install --git-url https://github.com/adafruit/Adafruit_LSM6DS.git;
           arduino-cli lib install --git-url https://github.com/adafruit/Adafruit_BusIO.git;
