@@ -44,9 +44,6 @@ The SATLLA-0 flight software platform includes the following key features:
 + A functional ground station based on an ESP32 board.
 
 
-# Installation
-SATLLA-0 is written in Arduino, and can be installed via Arduino, Teensyduino or any other IDE supporting Arduino.
-
 ## Supported Hardware
 A list of all the hardware required to assemble a functional nanosatellite is available [here](https://github.com/kcglab/satllazero/blob/main/MD/bom.MD).
 The following boards are being used in this repository:
@@ -55,8 +52,13 @@ The following boards are being used in this repository:
 + SAT0_OBC: RPI-Zero or RPI-Zero-W.
 
 
+# Installation
+SATLLA-0 is written in Arduino, and can be installed via Arduino, Teensyduino or any other IDE supporting Arduino.
+Please refer to [wiki](https://github.com/kcglab/satllazero/wiki) for details installation.
+
+
 # For more info
-For more into on SATLLA-0, its workings, inputs, outputs and more see the [wiki](https://github.com/kcglab/satllazero/wiki)
+For more into on SATLLA-0, its workings, inputs, outputs and more see the [wiki](https://github.com/kcglab/satllazero/wiki).
 
 
 # Bug reporting and feature requests
