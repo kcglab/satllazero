@@ -6,7 +6,7 @@
 
 
 # Our Vision
-The overall vision is to enable both researchers and 12K to build a fully functional pico-satellite model based on a proven design that is fully functional in space (see [SATLLA-2](https://tinygs.com/satellite/SATLLA-2B)).
+The overall vision is to enable both researchers and 12K to build a fully functional pico-satellite model based on a proven design that is fully functional in space (see [SATLLA-2B](https://tinygs.com/satellite/SATLLA-2B)).
 The SATLLA-0 project includes both the software and hardware of the pico satellite (and ground station).
 The vision of the project is to enable any science class (in high school or university) to experience the "new space" at a fraction of the price of existing solutions.
 
