@@ -22,6 +22,8 @@ The repo is structured as follows:
 + stl: Contains 3D sketches.
 + paper: Contains the JOSS submission paper.
 
+The SATLLA-0 libraries offer the ability to be used independently, meaning that each library component may be utilized separately according to the user's specific requirements. For instance, the SAT0_MASTER satellite flight software can be integrated with alternate ground station software. However, it is essential to know that adjustments relating to radio frequencies and message structures are needed.
+
 
 # Description
 The SATLLA-0 core flight system is an open-source flight software used by the SATLLA-2B satellite. The library was designed as a starting point for academic institutions or schools that want to build or experiment with a laboratory or functional nanosatellite. As mentioned earlier, the system is divided into three parts. The main library contains the satellite's flight software, written in Arduino. Arduino is a C/C++ based programming language that is open source and easy to learn. The main library developed for the Teensy 3.x/4.x microcontroller family, which is the main microprocessor unit (MPU) of the SATLLA-2B nanosatellite. However, the library can be compiled for other microcontrollers using the definitions available in the library.
