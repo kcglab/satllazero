@@ -6,7 +6,7 @@
 
 
 # Our Vision
-The overall vision is to enable both researchers and 12K to build a fully functional pico-satellite model based on a proven design that is fully functional in space (see [SATLLA-2](https://tinygs.com/satellite/SATLLA-2B)).
+The overall vision is to enable both researchers and 12K to build a fully functional pico-satellite model based on a proven design that is fully functional in space (see [SATLLA-2B](https://tinygs.com/satellite/SATLLA-2B)).
 The SATLLA-0 project includes both the software and hardware of the pico satellite (and ground station).
 The vision of the project is to enable any science class (in high school or university) to experience the "new space" at a fraction of the price of existing solutions.
 
@@ -21,6 +21,8 @@ The repo is structured as follows:
 + MD: Contains MD files describing the satellite commands, beacons and bill of materials (BOM).
 + stl: Contains 3D sketches.
 + paper: Contains the JOSS submission paper.
+
+The SATLLA-0 libraries offer the ability to be used independently, meaning that each library component may be utilized separately according to the user's specific requirements. For instance, the SAT0_MASTER satellite flight software can be integrated with alternate ground station software. However, it is essential to know that adjustments relating to radio frequencies and message structures are needed.
 
 
 # Description
