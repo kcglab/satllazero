@@ -203,7 +203,7 @@ bool REPLY_ACK = false;
 #define LORA_433_DIO0_PIN 2
 #elif (DEVCIE == BOARD_T_BEAM) // TTGO T-BEAM
 #define LORA_433_NSS_PIN 18
-#define LORA_433_RST_PIN 14
+#define LORA_433_RST_PIN 23
 #define LORA_433_DIO0_PIN 26
 #elif (DEVCIE == BOARD_T_3V16) // TTGO T3_V1.6
 #define LORA_433_NSS_PIN 4
