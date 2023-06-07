@@ -56,7 +56,7 @@ The following boards are being used in this repository:
 
 ## SATLLA-0 EVM Board
 The SATLLA-0 evaluation board is specifically designed for flat CubeSats, offering a comprehensive platform for testing and experimenting with various satellite functionalities. This evaluation board incorporates a wide range of satellite sensors, enabling researchers and engineers to assess and explore the full capabilities of the SATLLA-0 system. By providing access to most of the essential sensors used in satellites, the board allows for in-depth evaluation and analysis of different aspects, such as thermal management, power optimization, and communication protocols.
-Please refer to [EVM_BOARD](https://github.com/kcglab/satllazero/hardware/evm_board) for more details.
+Please refer to [EVM_BOARD](hardware/evm_board) for more details.
 
 
 # Installation
