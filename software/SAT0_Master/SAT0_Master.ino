@@ -997,7 +997,7 @@ void handle_tasks()
             }
 #endif
             delay(SEC_1);
-#if RF_433_ENABLE
+#if RF_24_ENABLE
             wrap_message_24(command_data_echo_msg.cmd_payload, command_data_echo_msg.cmd_size, type_echo);
 #endif
         }

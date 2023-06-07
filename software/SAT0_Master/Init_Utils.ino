@@ -202,7 +202,7 @@ bool deploy_antenna(uint8_t secs)
         digitalWrite(FAT_ANT_PIN, HIGH);
         while (digitalRead(ANT_SW_PIN) == HIGH || millis() - start < deploy_period)
         {
-            PRINT(F("."));
+            // PRINT(F("."));
         }
         digitalWrite(FAT_ANT_PIN, LOW);
         deploy_antenna_flag = !digitalRead(ANT_SW_PIN);

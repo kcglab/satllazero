@@ -54,6 +54,11 @@ The following boards are being used in this repository:
 + SAT0_OBC: RPI-Zero or RPI-Zero-W.
 
 
+## SATLLA-0 EVM Board
+The SATLLA-0 evaluation board is specifically designed for flat CubeSats, offering a comprehensive platform for testing and experimenting with various satellite functionalities. This evaluation board incorporates a wide range of satellite sensors, enabling researchers and engineers to assess and explore the full capabilities of the SATLLA-0 system. By providing access to most of the essential sensors used in satellites, the board allows for in-depth evaluation and analysis of different aspects, such as thermal management, power optimization, and communication protocols.
+Please refer to [EVM_BOARD](https://github.com/kcglab/satllazero/hardware/evm_board) for more details.
+
+
 # Installation
 SATLLA-0 is written in Arduino, and can be installed via Arduino, Teensyduino or any other IDE supporting Arduino.
 Please refer to [wiki](https://github.com/kcglab/satllazero/wiki) for details installation.
