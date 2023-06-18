@@ -169,16 +169,18 @@ memset(ser_buffer_g, 0x00, MAX_BUFFER_SIZE);
 #endif
 
   if (cmd == 't') {
+#if EEPROM_ENABLE
     PRINTLN("Settings:");
     print_settings();
-#if EEPROM_ENABLE
     print_eeprom();
 #endif
     if (idx >= 2) {
       uint8_t opt = (int)ser_buffer_g[0] + 87;
       PRINT("opt:\t");
       PRINTLN((char)opt);
+#if EEPROM_ENABLE
     parse_setting(opt, ser_buffer_g + 1, idx - 1);
+#endif
     }
     return;
   }
