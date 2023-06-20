@@ -157,7 +157,11 @@ TinyGPSPlus gps;           // GPS
 #define FAT_RPI_1_PIN 5     //
 #define FAT_LORA_24_PIN 6   // On-Board
 #define FAT_LASER_PIN 28    // FAT1-ON
+#ifdef ARDUINO_TEENSY32
+#define FAT_MAIN_LED_PIN 8 //
+#else
 #define FAT_MAIN_LED_PIN 29 //
+#endif
 #define FAT_ANT_PIN 31      //
 #define FAT_GEN2_PIN -1     //
 

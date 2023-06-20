@@ -136,7 +136,7 @@ char firmware_version[14 + 1] = {0};
 #else // TTGO T-BEAM
 #define LED1 25
 #define SCK 5   // GPIO5  -- SX1278's SCK
-#define MISO 19 // GPIO19 -- SX1278's MISnO
+#define MISO 19 // GPIO19 -- SX1278's MISO
 #define MOSI 27 // GPIO27 -- SX1278's MOSI
 #define NSS 18  // GPIO18 -- SX1278's CS
 #define RST 14  // GPIO14 -- SX1278's RESET
@@ -144,7 +144,7 @@ char firmware_version[14 + 1] = {0};
 #define OLED_R 16
 #define OLED_SDA 21
 #define OLED_SCL 22
-#define SERVO_PIN 23 // Servo Signal Pin
+#define SERVO_PIN -1 // Servo Signal Pin
 #endif
 
 #define NUM_SATS 1
@@ -214,9 +214,11 @@ bool REPLY_ACK = false;
 #define LORA_433_CR_4_5 5
 #define LORA_433_SF10 10
 #define LORA_433_BW_062 6 // table
+#define LORA_433_BW_125 7 // table
+#define LORA_433_BW_250 9 // table
 
 #define LORA_433_CRC_ON 0x01    // Packet CRC is activated
-#define LORA_433_CRC_OFF 0x0    // Packet CRC is activated
+#define LORA_433_CRC_OFF 0x0    // Packet CRC is deactivated
 #define LORA_433_LDRO_ON 0x01   // 0x00 OFF, 0x01 ON, 0x02 AUTO
 #define LORA_433_LDRO_OFF 0x00  // 0x00 OFF, 0x01 ON, 0x02 AUTO
 #define LORA_433_LDRO_AUTO 0x02 // 0x00 OFF, 0x01 ON, 0x02 AUTO
