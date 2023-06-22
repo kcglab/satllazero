@@ -34,6 +34,7 @@ SATLLA-0 is divided into three main libraries, with the main library, [SAT0_Mast
 
 # Statement of need
 Building a nanosatellite and developing flight software is challenging for newcomers to the space (i.e., new-space) field due to the lack of literature and high cost. There are open-source frameworks for space projects developed by space agencies, universities, or commercial companies to serve as reference designs and encourage code reuse in their future projects [@jamie2017basic]. These frameworks have not yet gained significant adoption outside of their host organizations [@miranda2019comparative] for the following reasons:
+
 * Flight software is tailored to a satellite of a specific design and is not transferable to another design.
 * Flight software is not based on open source software or the entire flight software has not been released as open source software.
 * Flight software is too complicated and may not be suitable for organizations just starting out or for STEM education.
@@ -43,17 +44,17 @@ At the same time, using an existing software framework leads to a shorter develo
 # Description
 The SATLLA-0 core flight system serves as open-source flight software utilized by the SATLLA-2B satellite. Its purpose is to provide a foundational framework for academic institutions or schools interested in constructing or experimenting with laboratory or functional nanosatellites. As previously mentioned, this system comprises three distinct components. The primary library encompasses the satellite's flight software, employing the Arduino programming language, which is based on C/C++, renowned for its open-source nature and ease of comprehension. The primary focus during the development of the main library was to cater to the specific requirements of the Teensy 3.x/4.x microcontroller family, which functions as the central microprocessor unit (MPU) for the SATLLA-2B nanosatellite. However, it is worth noting that the library incorporates accessible definitions that enable the compilation of the library for alternative microcontrollers, expanding its compatibility beyond the Teensy series.
 
-![Figure 1: SATLLA-0 FSW two main states: Initialization and Operation.\label{fig:figure1_1}](figure1_1.png)
+![SATLLA-0 FSW two main states: Initialization and Operation.\label{fig:figure1_1}](figure1_1.png)
 
-The FSW consists of two primary states, as deduced from the system requirements of a state machine [@gonzalez2019architecture] (Fig. \autoref{fig:figure1_1}).
+The FSW consists of two primary states, as deduced from the system requirements of a state machine [@gonzalez2019architecture] (\autoref{fig:figure1_1}).
 
 * **Initialization**: During the initialization phase, the FSW undertakes the initial configuration process by accessing the initialization parameters stored in the flash memory of the MCU. Upon the initial startup or following a complete reset, the FSW utilizes predefined default values. Simultaneously, this state encompasses the initialization of different satellite modules, such as the IMU, GPS, and communication systems. Subsequently, the satellite's state is evaluated to ascertain the operational mode, which can be categorized as Panic, Reduced Operation, or Normal Operation.
 
 * **Operation**: After concluding the initialization state and establishing the operational mode, the FSW proceeds to enter iterative loops. These loops enable the FSW to query the diverse modules and sensors, subsequently responding appropriately to the received data. Additionally, the FSW periodically transmits a heartbeat signal to the watchdog, ensuring it does not reach a critical state. This proactive measure of sending regular heartbeats prevents the watchdog from reaching a zero point or malfunctioning.
 
-![Figure 2: SATLLA-0 Power and Protocol interfaces.\label{fig:figure2_1}](figure2_1.png)
+![SATLLA-0 Power and Protocol interfaces.\label{fig:figure2_1}](figure2_1.png)
 
-A technical overview of the power, data, and RF interfaces used in the SATLLA-0 system is available in Fig. \autoref{fig:figure2_1}. The specific interface used for each component is determined by the communication type integrated into that particular component. Some components possess multiple communication interfaces, such as Integrated Communications (I2C), Serial Peripheral Interface (SPI), or Universal Asynchronous Receiver Transmitter (UART). In such cases, the preferred communication type is selected based on the component's requirements. For example, both the On-Board Computer (OBC) and the GPS module communicate with the microcontroller unit (MCU) using a UART interface. This approach ensures the MCU remains operational while collecting necessary data. Additionally, the power supply interface regulates voltage levels (3.3 V) for the satellite's avionics and payloads.
+A technical overview of the power, data, and RF interfaces used in the SATLLA-0 system is available in \autoref{fig:figure2_1}. The specific interface used for each component is determined by the communication type integrated into that particular component. Some components possess multiple communication interfaces, such as Integrated Communications (I2C), Serial Peripheral Interface (SPI), or Universal Asynchronous Receiver Transmitter (UART). In such cases, the preferred communication type is selected based on the component's requirements. For example, both the On-Board Computer (OBC) and the GPS module communicate with the microcontroller unit (MCU) using a UART interface. This approach ensures the MCU remains operational while collecting necessary data. Additionally, the power supply interface regulates voltage levels (3.3 V) for the satellite's avionics and payloads.
 
 For a full documentation of `SATLLA-0`, the reader is referred to our [GitHub page](https://github.com/kcglab/satllazero).
 
