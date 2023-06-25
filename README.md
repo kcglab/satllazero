@@ -83,7 +83,20 @@ This program is released as open source software under the terms of [GPL3 Licens
 
 #Citation
 If you'd like to cite us in a project or publication, please include a reference to the JOSS paper:
-*** Pre Review ***
+```
+@article{Ronen_SATLLA0_A_Flight_2023,
+  author = {Ronen, Rony and Britvin, Michael and Moshe, Boaz Ben},
+  doi = {10.21105/joss.05147},
+  journal = {Journal of Open Source Software},
+  month = jun,
+  number = {86},
+  pages = {5147},
+  title = {{SATLLA0: A Flight Software Platform for Aerospace and STEM Education}},
+  url = {https://joss.theoj.org/papers/10.21105/joss.05147},
+  volume = {8},
+  year = {2023}
+}
+```
 
 
 Ariel University. 2023.
