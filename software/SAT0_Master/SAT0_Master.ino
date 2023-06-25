@@ -60,6 +60,7 @@ void setup()
         Teensy3Clock.set(now());
     }
     digitalClockDisplay();
+    delay(TENTH_SEC);
 #endif
 
     // SPI
@@ -79,6 +80,7 @@ void setup()
     // Watchdog Setup
 #if WD_ENABLE
     wd_setup();
+    delay(TENTH_SEC);
 #endif
 
     // SD Card Setup
@@ -90,6 +92,7 @@ void setup()
     // Large FS if Teensy 4.1
 #if TNSYFS_ENABLE
     tnsyfs_setup();
+    delay(TENTH_SEC);
 #endif
 
     // Mode LED
@@ -139,6 +142,14 @@ void setup()
     sensor_ntc_setup();
 #endif
 
+    // SF BBSTR
+#if BBSTR_BQ27441_ENABLE
+    setup_BQ27441();
+    delay(TENTH_SEC);
+    battery_read();
+    check_battery_status();
+#endif
+
     // RPI 0
 #if RPI_ENABLE
     rpi_serial_setup();
@@ -161,14 +172,6 @@ void setup()
 
     lora_24_setup();
     lora_433_setup(); // fix the issue of timeout -5
-#endif
-
-    // SF BBSTR
-#if BBSTR_BQ27441_ENABLE
-    setup_BQ27441();
-    delay(TENTH_SEC);
-    battery_read();
-    check_battery_status();
 #endif
 
     // initial Boot include antenna deploy
@@ -194,6 +197,7 @@ void setup()
         }
     }
 #endif
+    delay(TENTH_SEC);
 
     PRINTLN("**************************  END SETUP ************************** ");
 }

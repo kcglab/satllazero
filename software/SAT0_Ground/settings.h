@@ -26,7 +26,7 @@
 #include <ArduinoJson.h>
 #include <Wire.h>
 
-#define LOCAL_ADDRESS 0xF0
+#define LOCAL_ADDRESS 0xE0
 byte local_address = LOCAL_ADDRESS; // default gs address
 
 const char DATE_[] = (__DATE__ "");

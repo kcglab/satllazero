@@ -441,7 +441,7 @@ void handle_433_message()
             }
 
             // Not for me!. Skip.
-            if (lora_data_g.destination >> 4 != 0x0F)
+            if (lora_data_g.destination >> 4 != 0x0E)
             {
                 PRINTLN("Func: handle_433_message(): Not for me!");
                 PRINTLN(lora_data_g.destination >> 4);
@@ -450,7 +450,7 @@ void handle_433_message()
             }
 
             // if message is for me and replied ack.
-            if (lora_data_g.destination  >> 4 == 0x0F &&
+            if (lora_data_g.destination  >> 4 == 0x0E &&
                 lora_data_g.msg_type == type_ack)
             {
                 PRINTLN("Func: handle_433_message(): ack replied!");
@@ -463,7 +463,7 @@ void handle_433_message()
             }
 
             // if message is for me and ack requested, reply.
-            if (lora_data_g.destination  >> 4 == 0x0F &&
+            if (lora_data_g.destination  >> 4 == 0x0E &&
                 lora_data_g.msg_ack_req > NO_ACK)
             {
                 PRINTLN("Func: handle_433_message(): ACK");
