@@ -1,0 +1,40 @@
+cff-version: "1.2.0"
+authors:
+- family-names: Ronen
+  given-names: Rony
+  orcid: "https://orcid.org/0000-0002-1300-5236"
+- family-names: Britvin
+  given-names: Michael
+  orcid: "https://orcid.org/0009-0003-5492-4014"
+- family-names: Moshe
+  given-names: Boaz Ben
+  orcid: "https://orcid.org/0000-0002-1580-5421"
+doi: 10.5281/zenodo.8060399
+message: If you use this software, please cite our article in the
+  Journal of Open Source Software.
+preferred-citation:
+  authors:
+  - family-names: Ronen
+    given-names: Rony
+    orcid: "https://orcid.org/0000-0002-1300-5236"
+  - family-names: Britvin
+    given-names: Michael
+    orcid: "https://orcid.org/0009-0003-5492-4014"
+  - family-names: Moshe
+    given-names: Boaz Ben
+    orcid: "https://orcid.org/0000-0002-1580-5421"
+  date-published: 2023-06-24
+  doi: 10.21105/joss.05147
+  issn: 2475-9066
+  issue: 86
+  journal: Journal of Open Source Software
+  publisher:
+    name: Open Journals
+  start: 5147
+  title: "SATLLA0: A Flight Software Platform for Aerospace and STEM
+    Education"
+  type: article
+  url: "https://joss.theoj.org/papers/10.21105/joss.05147"
+  volume: 8
+title: "SATLLA0: A Flight Software Platform for Aerospace and STEM
+  Education"
