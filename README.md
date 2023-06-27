@@ -1,5 +1,5 @@
 [![DOI](https://zenodo.org/badge/575807899.svg)](https://zenodo.org/badge/latestdoi/575807899)
-[![status](https://joss.theoj.org/papers/af50648087de6186bd6eb99014658ada/status.svg)](https://joss.theoj.org/papers/af50648087de6186bd6eb99014658ada)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.05147/status.svg)](https://doi.org/10.21105/joss.05147)
 
 # Overview
 **SATLLA-0** (also known as satllazero) is an open source project dedicated to the development of a complete pico-satellite.
