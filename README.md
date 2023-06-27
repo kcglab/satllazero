@@ -21,9 +21,10 @@ The vision of the project is to enable any science class (in high school or univ
 - [Installation](#installation)
 - [For more info](#for-more-info)
 - [Bugs and feature requests](#bugs-and-feature-requests)
-- [Creators](#creators)
-- [Thanks](#thanks)
 - [Copyright and license](#copyright-and-license)
+- [Links](#links)
+- [Citation](#citation)
+
 
 
 ## Description
@@ -87,7 +88,7 @@ For more into on SATLLA-0, its workings, inputs, outputs and more see the [wiki]
 Please submit bug reports and feature requests to the issue tracker on GitHub: [SATLLA-0 issue tracker](https://github.com/kcglab/satllazero/issues)
 
 
-## Licence
+## Copyright and license
 This program is released as open source software under the terms of [GPL3 License](https://github.com/kcglab/satllazero/blob/main/LICENSE).
 
 
@@ -118,5 +119,5 @@ If you'd like to cite us in a project or publication, please include a reference
 Ariel University. 2023.
 
 
-# Troubleshoot
+## Troubleshoot
 * Issue w/Actions
