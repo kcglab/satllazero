@@ -2,13 +2,10 @@
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.05147/status.svg)](https://doi.org/10.21105/joss.05147)
 
 # Overview
-**SATLLA-0** (also known as satllazero) is an open source project dedicated to the development of a complete pico-satellite.
-
+**SATLLA-0**, also known as satllazero, is an open-source project that aims to develop a fully functional pico-satellite. The project includes both the software and hardware of the pico satellite, as well as a ground station. The goal of the project is to enable any science class (in high school or university) to experience the "new space" at a fraction of the price of existing solutions.
 
 # Our Vision
-The overall vision is to enable both researchers and 12K to build a fully functional pico-satellite model based on a proven design that is fully functional in space (see [SATLLA-2B](https://tinygs.com/satellite/SATLLA-2B)).
-The SATLLA-0 project includes both the software and hardware of the pico satellite (and ground station).
-The vision of the project is to enable any science class (in high school or university) to experience the "new space" at a fraction of the price of existing solutions.
+The SATLLA-0 project is all about building a fully functional pico-satellite that's based on a design that's already been launched into space (see [SATLLA-2B](https://tinygs.com/satellite/SATLLA-2B)). Researchers and 12K students can get involved, and the project includes the software, hardware, and ground station you need to make it happen. The goal is to make it possible for any science class to experience the "new space" without breaking the bank.
 
 ## Table of contents
 
@@ -28,7 +25,7 @@ The vision of the project is to enable any science class (in high school or univ
 
 
 ## Description
-The SATLLA-0 core flight system is an open-source flight software used by the SATLLA-2B satellite. The library was designed as a starting point for academic institutions or schools that want to build or experiment with a laboratory or functional nanosatellite. As mentioned earlier, the system is divided into three parts. The main library contains the satellite's flight software, written in Arduino. Arduino is a C/C++ based programming language that is open source and easy to learn. The main library developed for the Teensy 3.x/4.x microcontroller family, which is the main microprocessor unit (MPU) of the SATLLA-2B nanosatellite. However, the library can be compiled for other microcontrollers using the definitions available in the library.
+The SATLLA-0 core flight system is an open-source flight software that is used by the SATLLA-2B satellite. The library was designed to be a starting point for academic institutions and schools that want to build or experiment with a laboratory or functional nanosatellite. The system has three main components: the Master, the on-board computer, and the Ground Station. For more information on each component, please see the following section. The main library contains the satellite's flight software, written in Arduino. Arduino is a C/C++ based programming language that is open source and easy to learn. This library was developed for the Teensy 3.x/4.x microcontroller family, which is the main microprocessor unit (MPU) of the SATLLA-2B nanosatellite. However, the library can be compiled for other microcontrollers using the definitions available in the library.
 
 
 ## What's included
