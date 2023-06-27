@@ -20,9 +20,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-/* ===================== */
-/* SPI Pinout Teensy 4.1 */
-/* ===================== */
+/* ========================= */
+/* SPI Pinout Teensy 4.x/3.x */
+/* ========================= */
 // CS_PIN 10
 // MOSI_PIN 11
 // MISO_PIN 12
@@ -125,10 +125,10 @@ TinyGPSPlus gps;           // GPS
 #define LRG_BUFFER_SIZE_MAX 16384
 
 // Ring Buffer Size
-#ifdef ARDUINO_TEENSY32
-#define TX_RBUFF_MAX_NUM_ELEMENTS 10
-#else
+#ifdef ARDUINO_TEENSY41
 #define TX_RBUFF_MAX_NUM_ELEMENTS 200
+#else
+#define TX_RBUFF_MAX_NUM_ELEMENTS 10
 #endif
 
 // Restart Teensy
@@ -136,38 +136,46 @@ TinyGPSPlus gps;           // GPS
 #define CPU_RESTART_VAL 0x5FA0004
 #define CPU_RESTART (*CPU_RESTART_ADDR = CPU_RESTART_VAL);
 
-// ANT Relase Button
+// ANT Relase / Prog Button
 #define ANT_SW_PIN 26
 
 // Main LED
-#ifdef ARDUINO_TEENSY32
-#define MODE_LED_PIN 6
-#else
+#ifdef ARDUINO_TEENSY41
 #define MODE_LED_PIN 16
+#else
+#define MODE_LED_PIN 6
 #endif
 
 // FAT
+#ifdef ARDUINO_TEENSY41
 #define FAT_IMU_PIN 2       //
 #define FAT_GPS_PIN 3       //
-#ifdef ARDUINO_TEENSY32
-#define FAT_LORA_433_PIN 14 //
-#else
 #define FAT_LORA_433_PIN 4  //
-#endif
 #define FAT_RPI_1_PIN 5     //
 #define FAT_LORA_24_PIN 6   // On-Board
 #define FAT_LASER_PIN 28    // FAT1-ON
-#ifdef ARDUINO_TEENSY32
-#define FAT_MAIN_LED_PIN 8 //
-#else
 #define FAT_MAIN_LED_PIN 29 //
-#endif
 #define FAT_ANT_PIN 31      //
 #define FAT_GEN2_PIN -1     //
+#else                       // #ifdef ARDUINO_TEENSY32
+#define FAT_IMU_PIN 15      //
+#define FAT_GPS_PIN -1      //
+#define FAT_LORA_433_PIN 14 //
+#define FAT_RPI_1_PIN -1    //
+#define FAT_LORA_24_PIN -1  // On-Board
+#define FAT_LASER_PIN -1    // FAT1-ON
+#define FAT_MAIN_LED_PIN 8  //
+#define FAT_ANT_PIN 21      //
+#define FAT_GEN2_PIN -1     //
+#endif
 
 // NTC's
+#ifdef ARDUINO_TEENSY41
 #define NTC1_PIN 40 // PIN_A21 // Bat
 #define NTC2_PIN 41 // PIN_A22 // Panel
+#else               // #ifdef ARDUINO_TEENSY32
+#define NTC1_PIN 20 // Bat
+#endif
 
 // Watch Dog
 #define WDI_PIN 32
@@ -195,14 +203,17 @@ TinyGPSPlus gps;           // GPS
 #define LORA_433_BW_062 6 // table
 #endif                    // LORA_SX127X_ENABLE
 
-#define LORA_433_CRC_ON 0x00  // Packet CRC is activated
-#define LORA_433_LDRO_ON 0x00 // 0x00 OFF, 0x01 ON, 0x02 AUTO
+#define LORA_433_CRC_ON 0x01    // Packet CRC is activated
+#define LORA_433_CRC_OFF 0x0    // Packet CRC is deactivated
+#define LORA_433_LDRO_ON 0x01   // 0x00 OFF, 0x01 ON, 0x02 AUTO
+#define LORA_433_LDRO_OFF 0x00  // 0x00 OFF, 0x01 ON, 0x02 AUTO
+#define LORA_433_LDRO_AUTO 0x02 // 0x00 OFF, 0x01 ON, 0x02 AUTO
 
 #define LORA_433_NSS_PIN 22
-#ifdef ARDUINO_TEENSY32
-#define LORA_433_DIO0_PIN 16
-#else
+#ifdef ARDUINO_TEENSY41
 #define LORA_433_DIO0_PIN 21
+#else
+#define LORA_433_DIO0_PIN 16
 #endif
 #define LORA_433_DIO1_PIN -1
 #define LORA_433_RST_PIN 23
@@ -220,7 +231,7 @@ TinyGPSPlus gps;           // GPS
 #define LORA_433_SW 0x2A               // Syncword
 #define LORA_433_PL 8                  // preambleLength
 #define LORA_433_TCXO -1               // tcxoVoltage
-#define LORA_433_LDRO LORA_433_LDRO_ON // 0x00 OFF, 0x01 ON, 0x02 AUTO
+#define LORA_433_LDRO LORA_433_LDRO_OFF // 0x00 OFF, 0x01 ON, 0x02 AUTO
 #define LORA_433_CRC LORA_433_CRC_ON   // 0x00 OFF, 0x01 ON
 
 #define FSK_433_DEVIATION 5.0       // kHz single-sideband

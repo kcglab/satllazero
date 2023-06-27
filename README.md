@@ -7,6 +7,11 @@
 # Our Vision
 The SATLLA-0 project is all about building a fully functional pico-satellite that's based on a design that's already been launched into space (see [SATLLA-2B](https://tinygs.com/satellite/SATLLA-2B)). Researchers and 12K students can get involved, and the project includes the software, hardware, and ground station you need to make it happen. The goal is to make it possible for any science class to experience the "new space" without breaking the bank.
 
+<div style="display: flex; justify-content: center;">
+  <img src="photos/fig_satlla_2b.jpg" alt="SATLLA-2B" style="width: auto; height: 250px;">
+  <img src="photos/fig_evm.jpeg" alt="SATLLA-0 EVM Board" style="width: auto; height: 250px;">
+</div>
+
 ## Table of contents
 
 - [Description](#description)

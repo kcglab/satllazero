@@ -492,7 +492,7 @@ void gps_info()
     }
     else
     {
-        PRINTLN("Func: read_GPS_data(): GPS Invalid");
+        // PRINTLN("Func: read_GPS_data(): GPS Invalid");
     }
 
 #if DEVICE_MODE == BOARD_HELTEC
