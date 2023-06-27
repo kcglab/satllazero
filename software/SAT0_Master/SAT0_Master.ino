@@ -802,7 +802,7 @@ int8_t handle_auto_tasks()
     }
     else if (auto_task > DAYS_6 && auto_task <= WEEK_1)
     {
-#if TNSYFS_ENABLE        
+#if RPI_ENABLE
         PRINTLN("Func: handle_auto_tasks()::Last Mission");
         uint16_t mission = fs_get_misson_index();
         uint16_t file_index = 0x01;
