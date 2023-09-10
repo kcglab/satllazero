@@ -34,6 +34,7 @@ from define import *
 cfg_file = "config.conf"
 config = configparser.ConfigParser()
 
+
 class Controller:
     print("Controller Class")
     imuConnected = False
@@ -254,13 +255,14 @@ class Controller:
 
             elif command == CmdTypes.CMD_UPLOAD_FILE.value:  # 16
                 print("*** CmdTypes.CMD_UPLOAD_FILE ***")
-                
+
                 # set state to in mission and sendmsg
                 self.state = StateTypes.STATE_BUSY.value
                 self.serial.sendMsg(bytearray([ApiTypes.API_ACK.value]))
 
                 # get mission id
-                missionCount = int(config.get("mission", "missionCount")) #TODO
+                missionCount = int(config.get(
+                    "mission", "missionCount"))  # TODO
                 config.set("mission", "missionCount", str(missionCount + 1))
                 self.saveConfigFile()
 
@@ -273,18 +275,21 @@ class Controller:
                 scriptNum = paramsList[1]
                 line_num = paramsList[2]
                 num_chars = paramsList[3]
-                
-                add = lambda i: chr(int(hex(i), 16))
+
+                def add(i): return chr(int(hex(i), 16))
                 txt = ''.join([add(i) for i in paramsList[4: 4 + num_chars]])
 
-                reset = 1 if len(paramsList[: 4 + num_chars]) < len(paramsList) and paramsList[-1] != 0 else 0 #TODO how to reset
+                reset = 1 if len(paramsList[: 4 + num_chars]) < len(
+                    paramsList) and paramsList[-1] == 1 else 0  # TODO how to reset
                 # execute mission with parameters:
-                print('parms: * > * > ' , f'missionCount: {missionCount}, scriptNum: {scriptNum}, ', end='') 
-                print(f'line_num: {line_num}, num_chars: {num_chars}, txt: {repr(txt)}, reset: {reset}')
-        
+                print('parms: * > * > ',
+                      f'missionCount: {missionCount}, scriptNum: {scriptNum}, ', end='')
+                print(
+                    f'line_num: {line_num}, num_chars: {num_chars}, txt: {repr(txt)}, reset: {reset}')
+
                 import uploading
                 uploading.main(missionCount, scriptNum, line_num, txt, reset)
-                
+
                 # finished executing mission:
                 self.state = StateTypes.STATE_READY.value
                 print("*** CmdTypes.CMD_UPLOAD_FILE Done ***")
@@ -301,6 +306,7 @@ class Controller:
 
             self.state = StateTypes.STATE_READY.value
             # self.serial.sendMsg(bytearray([self.MISSION_ERR]))
+
 
 if __name__ == "__main__":
     print(f'*** Controller() Started ***')

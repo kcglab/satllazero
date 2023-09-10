@@ -54,7 +54,7 @@ def main(outputFolder: str, parameters_list: list) -> None:
         3: makeIcon (img_path, width, height, quality_factor, gray) will create an icon out of a given image path with
          custom parameters.
 
-        4: StarAnalysisOnPhotosThatAlreadyBeTaken (mission_count, width, height, sensitive, n_stars, with_mask)  will run star analysis 
+        4: StarAnalysis (mission_count, width, height, sensitive, n_stars, with_mask)  will run star analysis 
           on photos that have already been taken with given a custom parameters.
 
         5: testingOnPreSavedImages (missionID, x, y, quality_factor, gray, vga, img_n) will be able to run the above functions 
@@ -149,7 +149,7 @@ def main(outputFolder: str, parameters_list: list) -> None:
         img_n = parameters_list[9] if len(parameters_list) > 9 else 0
 
         mission = mission_Table[missionType]
-        mission(x, y, quality_factor, gray, vga, img_n)
+        mission(missionID, x, y, quality_factor, gray, vga, img_n)
 
 
 def TakePhotoStarAnalysis(quality: int, width: int, height: int, Shutter: int, ISO: int) -> None:
@@ -227,7 +227,6 @@ def StarAnalysis(mission_count: int, width=1280, height=720, sensitive=100, n_st
 
     # star detection
     detected_object = findStarsNoDarkEarth(img, img_object, sensitive, n_stars)
-    detected_object.draw()
 
     # get stars list:
     stars_list = get_stars(detected_object)
@@ -236,7 +235,6 @@ def StarAnalysis(mission_count: int, width=1280, height=720, sensitive=100, n_st
     print("Starting writeMetaDataStars")
     writeMetaDataStars(stars_list)
     print("Starting saveFinalImg")
-    saveFinalImg(detected_object.draw_image, "Detected")
 
 
 def takeStandardPicture() -> np.ndarray:
@@ -517,7 +515,10 @@ def testing(missionType: int, x: int, y: int, quality_factor: int, gray: bool, q
     """
     img_path = f"SatImageTaking/photos{img_n}.jpeg"
     mission = mission_Table[missionType]
-    mission(img_path, x, y, quality_factor, gray, qvga)
+    if mission == makeIcon:  # make icon took only five arguments
+        mission(img_path, x, y, quality_factor, gray)
+    else:
+        mission(img_path, x, y, quality_factor, gray, qvga)
 
 
 def CompressImage(in_img: np.ndarray, path: str, max_size: int = 16 * LIT.KBYTE, comp_gray=True, save_full=False) -> str and np.ndarray:
