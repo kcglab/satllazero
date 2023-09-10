@@ -194,7 +194,7 @@ def TakePhotoStarAnalysis(quality: int, width: int, height: int, Shutter: int, I
     writeMetaDataStars(stars_list)
 
 
-def StarAnalysis(mission_count: int, width=1280, height=720, sensitive=100, n_stars=30, without_earth_mask=0):
+def StarAnalysis(mission_count: int, width=1280, height=720, sensitive=50, n_stars=30, without_earth_mask=0):
     """Analyzes an image to identify stars
 
     Args:
@@ -214,7 +214,7 @@ def StarAnalysis(mission_count: int, width=1280, height=720, sensitive=100, n_st
     if height == 0:
         height = 480
     if sensitive == 0:
-        sensitive = 100
+        sensitive = 50
     if n_stars == 0:
         n_stars = 30
 
@@ -312,7 +312,7 @@ def takePictureWithParameters(quality: int, width: int, height: int, Shutter: in
     return img
 
 
-def findStarsNoDarkEarth(img: np.ndarray, img_object: np.ndarray, sensitive=100, n_stars=30) -> np.ndarray:
+def findStarsNoDarkEarth(img: np.ndarray, img_object: np.ndarray, sensitive=50, n_stars=30) -> np.ndarray:
     """Finds stars in an image while the Earth is lit and not dark
 
     Args:
