@@ -256,21 +256,6 @@ class Controller:
             elif command == CmdTypes.CMD_UPLOAD_FILE.value:  # 16
                 print("*** CmdTypes.CMD_UPLOAD_FILE ***")
 
-                # set state to in mission and sendmsg
-                self.state = StateTypes.STATE_BUSY.value
-                self.serial.sendMsg(bytearray([ApiTypes.API_ACK.value]))
-
-                # get mission id
-                missionCount = int(config.get(
-                    "mission", "missionCount"))  # TODO
-                config.set("mission", "missionCount", str(missionCount + 1))
-                self.saveConfigFile()
-
-                # check for mission folder and create if needed
-                out_fld = f"./outbox/{missionCount}"
-                if not os.path.exists(out_fld):
-                    os.makedirs(out_fld, exist_ok=True)
-
                 # get parameters:
                 scriptNum = paramsList[1]
                 line_num = paramsList[2]

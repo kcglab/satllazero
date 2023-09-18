@@ -92,7 +92,7 @@ def execute_file(file_name: str, script_path: str) -> list:
 
 
 def check_execute(file_name, script_line, script_path):
-    if script_line.find('\n') == -1:
+    if not script_line.endswith("\n"):
         return True
     with open(script_path, 'r') as f:
         last_line = f.readlines()[-1]
