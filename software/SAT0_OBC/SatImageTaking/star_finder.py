@@ -64,7 +64,7 @@ class star_finder:
         get_threshold(): Returns the threshold used to find stars.
         draw (): draw the stars on the image.
     """
-
+    # 19.9.2023 asaf h: lowered the default sensitivity for better result
     def __init__(self, path_or_image: str or list, gray_image=0, sensitivity=50, N_stars=None, dim=None, draw=False,) -> None:
         """
         Initializes the star_finder object.
@@ -109,16 +109,17 @@ class star_finder:
             center = x, y
             if r == 0:
                 r = 1
-
+            r += 1
             star = self.extract_star(y, x, r)
+            # 19.9.2023 asaf h: removed my get_brightness function for:  brightest_pixal = np.amax(star)
             brightest_pixal = np.amax(star)
-
+            # 19.9.2023 asaf h: filter out all the stars that dont not meet the minimum thresholdץ
             if brightest_pixal < self.sensitivity:
                 continue
 
             stars_data.append(
                 (star, center, r, brightest_pixal))
-
+        # 19.9.2023 asaf h: sort by brightest_pixal
         stars_data.sort(key=lambda cnt: cnt[3], reverse=True)
         return stars_data
 

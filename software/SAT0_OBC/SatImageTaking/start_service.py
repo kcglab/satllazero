@@ -149,6 +149,7 @@ def main(outputFolder: str, parameters_list: list) -> None:
         img_n = parameters_list[9] if len(parameters_list) > 9 else 0
 
         mission = mission_Table[missionType]
+        # 19.9.2023 asaf h: missionID was missing, it is like missionType, 7 arguments are needed for testing
         mission(missionID, x, y, quality_factor, gray, vga, img_n)
 
 
@@ -167,13 +168,7 @@ def TakePhotoStarAnalysis(quality: int, width: int, height: int, Shutter: int, I
         None
     """
     print("Started TakePhotoStarAnalysis")
-    if width == 0:
-        width = 640
-    if height == 0:
-        height = 480
-    if quality == 0:
-        quality = 10
-
+    # 19.9.2023 asaf h: there is no need to define the parameters, takePictureWithParameters does that.
     img = takePictureWithParameters(quality, width, height, Shutter, ISO)
 
     # define Dimensions
@@ -193,8 +188,8 @@ def TakePhotoStarAnalysis(quality: int, width: int, height: int, Shutter: int, I
     print("Starting writeMetaDataStars")
     writeMetaDataStars(stars_list)
 
-
-def StarAnalysis(mission_count: int, width=1280, height=720, sensitive=50, n_stars=30, without_earth_mask=0):
+# 19.9.2023 asaf h: the default numbers needs to be removed cuz 0 is sent not None, they will be difined later
+def StarAnalysis(mission_count: int, width: int, height: int, sensitive: int, n_stars: int, without_earth_mask=0):
     """Analyzes an image to identify stars
 
     Args:
@@ -209,10 +204,11 @@ def StarAnalysis(mission_count: int, width=1280, height=720, sensitive=50, n_sta
             stars_list (list): A list of the detected stars in the image
     """
     print("Started StarAnalysis")
+    # 19.9.2023 asaf h: fixed the default numbers
     if width == 0:
-        width = 640
+        width = 1280
     if height == 0:
-        height = 480
+        height = 720
     if sensitive == 0:
         sensitive = 50
     if n_stars == 0:
@@ -227,6 +223,8 @@ def StarAnalysis(mission_count: int, width=1280, height=720, sensitive=50, n_sta
 
     # star detection
     detected_object = findStarsNoDarkEarth(img, img_object, sensitive, n_stars)
+    #  19.9.2023 asaf h:     detected_object.draw() and     saveFinalImg(detected_object.draw_image, "Detected")
+    # will save the image with the green circels on the stars on the pi for future analysis. its unnecessary.
 
     # get stars list:
     stars_list = get_stars(detected_object)
@@ -236,32 +234,16 @@ def StarAnalysis(mission_count: int, width=1280, height=720, sensitive=50, n_sta
     writeMetaDataStars(stars_list)
     print("Starting saveFinalImg")
 
+# 19.9.2023 asaf h: removed takeStandardPicture function cuz there is no need to. check line 268 (else)
 
-def takeStandardPicture() -> np.ndarray:
-    """Takes a standard picture with default raspistill image capture parameters. 
-    The picture is taken by a cmd function
-
-    Returns:
-            img (np.ndarray): A numpy array containing the image
-    """
-
-    print("Started takeStandardPicture")
-    comm = f"raspistill -o {output}/Img.jpeg"
-    print(comm)
-    os.system(comm)
-    read = f"{output}/Img.jpeg"
-    print(read)
-    img = cv2_imread(read)
-    return img
-
-
+# 19.9.2023 asaf h: fixed the main function takePictureWithParameters. rony please double check it again. it should be fine
 def takePictureWithParameters(quality: int, width: int, height: int, Shutter: int, ISO: int) -> np.ndarray:
     """Take a picture with specified parameters 
 
     Args:
-        quality (int): The quality of the image (default 10)
-        width (int): The width of the image (default 640)
-        height (int): The height of the image (default 480)
+        quality (int): The quality of the image (default 100)
+        width (int): The width of the image (default 1280)
+        height (int): The height of the image (default 720)
         Shutter (int): The shutter speed of the camera (default 0)
         ISO (int): The ISO of the camera (default 0)
 
@@ -271,35 +253,28 @@ def takePictureWithParameters(quality: int, width: int, height: int, Shutter: in
 
     print("Started takePictureWithParameters")
     if quality == 0:
-        quality = 10
+        quality = 100
     if width == 0:
-        width = 640
+        width = 1280
     if height == 0:
-        height = 480
+        height = 720
 
-    if (quality != 100 and width != 1280 and height != 720 and Shutter != 0 and ISO != 0):
+    if (Shutter != 0 and ISO != 0):
         command_with_parameters = f"raspistill -o {output}/Img.jpeg --quality {quality} --width {width} --height {height} --shutter {Shutter} --ISO {ISO} -th none"
-        os.system(command_with_parameters)
-        read = f"{output}/Img.jpeg"
-        img = cv2_imread(read)
-    elif (quality != 100 and width != 1280 and height != 720 and Shutter != 0):
+    elif (Shutter != 0):
         command_with_parameters = f"raspistill -o {output}/Img.jpeg --quality {quality} --width {width} --height {height} --shutter {Shutter} -th none"
-        os.system(command_with_parameters)
-        read = f"{output}/Img.jpeg"
-        img = cv2_imread(read)
-    elif (quality != 100 and width != 1280 and height != 720):
-        command_with_parameters = f"raspistill -o {output}/Img.jpeg --quality {quality} --width {width} --height {height} -th none"
-        os.system(command_with_parameters)
-        read = f"{output}/Img.jpeg"
-        img = cv2_imread(read)
-    elif (quality != 100):
-        command_with_parameters = f"raspistill -o {output}/Img.jpeg --quality {quality} -th none"
-        os.system(command_with_parameters)
-        read = f"{output}/Img.jpeg"
-        img = cv2_imread(read)
+    elif (ISO != 0):
+        command_with_parameters = f"raspistill -o {output}/Img.jpeg --quality {quality} --width {width} --height {height}  --ISO {ISO} -th none"
+    elif (quality != 100 or width != 1280 or height != 720):
+        command_with_parameters = f"raspistill -o {output}/Img.jpeg --quality {quality}  --width {width} --height {height} -th none"
     else:
-        img = takeStandardPicture()
-        read = f"{output}/Img.jpeg"
+        command_with_parameters = f"raspistill -o {output}/Img.jpeg"
+
+    # 19.9.2023 asaf h: removed the take standard picture. unnecessary function
+
+    os.system(command_with_parameters)
+    read = f"{output}/Img.jpeg"
+    img = cv2_imread(read)
 
     print("Compressing")
     CompressImage(img, output, save_full=True)
@@ -311,7 +286,7 @@ def takePictureWithParameters(quality: int, width: int, height: int, Shutter: in
     writeMetaDataSmallImg(read, isGoodImage)
     return img
 
-
+# 19.9.2023 asaf h: lower the default sensitive for better result
 def findStarsNoDarkEarth(img: np.ndarray, img_object: np.ndarray, sensitive=50, n_stars=30) -> np.ndarray:
     """Finds stars in an image while the Earth is lit and not dark
 
@@ -515,10 +490,16 @@ def testing(missionType: int, x: int, y: int, quality_factor: int, gray: bool, q
     """
     img_path = f"SatImageTaking/photos{img_n}.jpeg"
     mission = mission_Table[missionType]
-    if mission == makeIcon:  # make icon took only five arguments
+    # 19.9.2023 asaf h: each function has its own order
+    if mission == makeIcon:  #
         mission(img_path, x, y, quality_factor, gray)
-    else:
+    elif mission == crop_and_compress:
         mission(img_path, x, y, quality_factor, gray, qvga)
+    else: #StarAnalysis
+        sensitive = quality_factor
+        n_stars = gray
+        without_earth_mask = qvga
+        mission(img_path, x, y, sensitive, n_stars, without_earth_mask)
 
 
 def CompressImage(in_img: np.ndarray, path: str, max_size: int = 16 * LIT.KBYTE, comp_gray=True, save_full=False) -> str and np.ndarray:

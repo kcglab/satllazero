@@ -161,3 +161,4 @@ def main(mission_count: int, script_num: int, line_num: int, txt: str, reset):
             f.write(np.array(line_num).astype(np.uint8).tobytes())
             print(
                 f'changed line: {line_num}, {np.array(line_num).astype(np.uint8).tobytes()}')
+# 19.9.2023 asaf h: no need of if __name__ == "__main__":.
