@@ -276,8 +276,8 @@ class Controller:
 
                 add = lambda i: chr(int(hex(i), 16))
                 txt = ''.join([add(i) for i in paramsList[4: 4 + num_chars]])
-
-                reset = 1 if len(paramsList[: 4 + num_chars]) < len(paramsList) and paramsList[-1] != 0 else 0 #TODO how to reset
+                # 19.9.2023 asaf h: To reset the file it is better to send 1 instead of not 0.
+                reset = 1 if len(paramsList[: 4 + num_chars]) < len(paramsList) and paramsList[-1] == 1 else 0
                 # execute mission with parameters:
                 print('parms: * > * > ' , f'missionCount: {missionCount}, scriptNum: {scriptNum}, ', end='')
                 print(f'line_num: {line_num}, num_chars: {num_chars}, txt: {repr(txt)}, reset: {reset}')
