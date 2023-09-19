@@ -16,7 +16,7 @@ def insert_line(script: list, line_num: int, line: int) -> None:
          for i in range(len(script) + x, line_num + 2)]
         script.insert(line_num, line)
 
-
+ # 19.9.2023 asaf h: file_num not in use, it is on file_path, changed also line 148.
 def writing_file(num_line: int, script_txt: str, file_path) -> None:
     # defultive script
     """
@@ -25,7 +25,7 @@ def writing_file(num_line: int, script_txt: str, file_path) -> None:
     if __name__ == "__main__"
         main()
     """
-    # 19.9.2023 asaf h: enable to insert multiple lines
+    # 19.9.2023 asaf h: enable to insert multiple lines at once.
     script_txt = script_txt.replace('\n', '\n\t').strip('\t')
     Tab = '\t'
     line = Tab + script_txt
@@ -92,7 +92,9 @@ def execute_file(file_name: str, script_path: str) -> list:
     return info
 
 
-def check_execute(file_name, script_line, script_path):
+# 19.9.2023 asaf h: file_num not in use, it is on file_path, changed also line 151.
+def check_execute(script_line, script_path):
+    # 19.9.2023 asaf h: enable to insert multiple lines at once.
     if not script_line.endswith("\n"):
         return True
     with open(script_path, 'r') as f:
@@ -144,10 +146,10 @@ def main(mission_count: int, script_num: int, line_num: int, txt: str, reset):
 
     if reset or not os.path.exists(script_path):
         reset_file(script_path)
-
+    # 19.9.2023 asaf h: file_num not in use, it is on file_path, changed also line 20.
     writing_file(line_num, txt, script_path)
-
-    if check_execute(file_name, txt, script_path):
+    # 19.9.2023 asaf h: file_num not in use, it is on file_path, changed also line 95.
+    if check_execute(txt, script_path):
         import time
         time.sleep(0.5)
         info = execute_file(file_name, script_path)
