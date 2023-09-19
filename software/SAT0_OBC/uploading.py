@@ -25,6 +25,7 @@ def writing_file(num_line: int, script_txt: str, file_path) -> None:
     if __name__ == "__main__"
         main()
     """
+    # 19.9.2023 asaf h: enable to insert multiple lines
     script_txt = script_txt.replace('\n', '\n\t').strip('\t')
     Tab = '\t'
     line = Tab + script_txt
