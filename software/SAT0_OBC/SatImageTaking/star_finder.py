@@ -64,6 +64,7 @@ class star_finder:
         get_threshold(): Returns the threshold used to find stars.
         draw (): draw the stars on the image.
     """
+
     # 19.9.2023 asaf h: lowered the default sensitivity for better result
     def __init__(self, path_or_image: str or list, gray_image=0, sensitivity=50, N_stars=None, dim=None, draw=False,) -> None:
         """
