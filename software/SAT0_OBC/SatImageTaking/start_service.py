@@ -265,10 +265,8 @@ def takePictureWithParameters(quality: int, width: int, height: int, Shutter: in
         command_with_parameters = f"raspistill -o {output}/Img.jpeg --quality {quality} --width {width} --height {height} --shutter {Shutter} -th none"
     elif (ISO != 0):
         command_with_parameters = f"raspistill -o {output}/Img.jpeg --quality {quality} --width {width} --height {height}  --ISO {ISO} -th none"
-    elif (quality != 100 or width != 1280 or height != 720):
-        command_with_parameters = f"raspistill -o {output}/Img.jpeg --quality {quality}  --width {width} --height {height} -th none"
     else:
-        command_with_parameters = f"raspistill -o {output}/Img.jpeg"
+        command_with_parameters = f"raspistill -o {output}/Img.jpeg --quality {quality}  --width {width} --height {height} -th none"
 
     # 19.9.2023 asaf h: removed the take standard picture. unnecessary function
 
