@@ -78,7 +78,8 @@ def get_pic_path_list(path: str) -> list:
         list: List of path of images in the directory.
     """
     file_list = os.listdir(path)
-    pic_path_list = [path + i for i in file_list if i.endswith(('.png', '.jpg', '.jpeg', '.jfif')) and
+    # 19.9.2023 asaf h: fix bug
+    pic_path_list = [path + '/' + i for i in file_list if i.endswith(('.png', '.jpg', '.jpeg', '.jfif')) and
                      not i.startswith('.')]
     return pic_path_list
 
