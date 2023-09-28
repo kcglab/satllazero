@@ -55,18 +55,18 @@ class star_finder:
         gray_image (np.ndarray): The grayscale version of the original image.
         sensitivity (int):  Sensitivity of the threshold used when finding stars.
         mask (np.ndarray): The mask used to find stars.
-        stars (list): A list of detected stars, including center, radius, and brightness.
+        stars (list): A list of detected stars, including thier image,  center(x,y), radius, and brightness.
         N_stars (int): The number of stars to detect.
 
     Methods:
         find_stars(): Finds stars in the image and stores them in the 'stars' attribute.
         extract_star(): Extracts a single star from the image.
         get_threshold(): Returns the threshold used to find stars.
-        get_brightness(): Returns the brightness of a star.
         draw (): draw the stars on the image.
     """
 
-    def __init__(self, path_or_image: str or list, gray_image=0, sensitivity=100, N_stars=None, dim=None, draw=False,) -> None:
+    # 19.9.2023 asaf h: lowered the default sensitivity for better result
+    def __init__(self, path_or_image: str or list, gray_image=0, sensitivity=50, N_stars=None, dim=None, draw=False,) -> None:
         """
         Initializes the star_finder object.
         """
@@ -110,11 +110,18 @@ class star_finder:
             center = x, y
             if r == 0:
                 r = 1
+            r += 1
             star = self.extract_star(y, x, r)
-            stars_data.append(
-                (star, center, r, star_finder.get_brightness(star)))
+            # 19.9.2023 asaf h: removed my get_brightness function for:  brightest_pixal = np.amax(star)
+            brightest_pixal = np.amax(star)
+            # 19.9.2023 asaf h: filter out all the stars that dont not meet the minimum thresholdץ
+            if brightest_pixal < self.sensitivity:
+                continue
 
-        stars_data.sort(key=lambda cnt: cnt[2], reverse=True)
+            stars_data.append(
+                (star, center, r, brightest_pixal))
+        # 19.9.2023 asaf h: sort by brightest_pixal
+        stars_data.sort(key=lambda cnt: cnt[3], reverse=True)
         return stars_data
 
     def extract_star(self, y, x, r):
@@ -150,22 +157,6 @@ class star_finder:
         adaptive_mean = cv2_adaptiveThreshold(
             gray_image, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY_INV, blockSize=5, C=1)
         return adaptive_mean
-
-    @staticmethod
-    def get_brightness(star):
-        """
-        Calculates the brightness of a star.
-
-        Args:
-            star (np.ndarray): Cropped star.
-
-        Returns:
-            int: Brightness of the star.
-        """
-        brightest_pixal = np.amax(star)
-        p = 0.1
-        threshold_pixal = brightest_pixal - brightest_pixal * p * 3
-        return np.sum(star[star > threshold_pixal])
 
     def draw(self):
         """

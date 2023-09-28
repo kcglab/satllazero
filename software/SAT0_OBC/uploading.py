@@ -1,6 +1,7 @@
 import numpy as np
 import os
 
+
 def insert_line(script: list, line_num: int, line: int) -> None:
     x = -1 if script[-1] == '#Execute script' else 0
     line_num -= 1  # cuz main():
@@ -15,8 +16,8 @@ def insert_line(script: list, line_num: int, line: int) -> None:
          for i in range(len(script) + x, line_num + 2)]
         script.insert(line_num, line)
 
-
-def writing_file(file_num: int, num_line: int, script_txt: str, file_path) -> None:
+ # 19.9.2023 asaf h: file_num not in use, it is on file_path, changed also line 148.
+def writing_file(num_line: int, script_txt: str, file_path) -> None:
     # defultive script
     """
     def main():
@@ -24,7 +25,9 @@ def writing_file(file_num: int, num_line: int, script_txt: str, file_path) -> No
     if __name__ == "__main__"
         main()
     """
-    Tab = ' '*4
+    # 19.9.2023 asaf h: enable to insert multiple lines at once.
+    script_txt = script_txt.replace('\n', '\n\t').strip('\t')
+    Tab = '\t'
     line = Tab + script_txt
 
     num_line += 1  # cuz main():
@@ -56,7 +59,7 @@ def reset_file(script_path: str) -> None:
         f.writelines(file)
 
 
-def execute_file(file_name: str, script_path:str) -> list:
+def execute_file(file_name: str, script_path: str) -> list:
     def module_from_file(module_name, file_path):
         import importlib.util
 
@@ -77,20 +80,22 @@ def execute_file(file_name: str, script_path:str) -> list:
         eror = format_tb(exception_traceback)[-1]
         print(eror)
         line_num = int(eror[eror.find(',') + 1: eror.rfind(',')
-                        ].replace('line', '').strip()) 
+                            ].replace('line', '').strip())
 
         if isinstance(exception_object, SyntaxError):  # bypass problem in that eror
             line_num = exception_object.lineno
         run_success = False
-        line_num -= 1 # cuz main()
+        line_num -= 1  # cuz main()
         info = [run_success, file_name, line_num]
 
     print(info)
     return info
 
 
-def check_execute(file_name, script_line, script_path):
-    if script_line.find('\n') == -1:
+# 19.9.2023 asaf h: file_num not in use, it is on file_path, changed also line 151.
+def check_execute(script_line, script_path):
+    # 19.9.2023 asaf h: enable to insert multiple lines at once.
+    if not script_line.endswith("\n"):
         return True
     with open(script_path, 'r') as f:
         last_line = f.readlines()[-1]
@@ -100,7 +105,7 @@ def check_execute(file_name, script_line, script_path):
 def writeMetaFile(mission_count: int, data: list) -> list:
     run_success, file_name = data[:2]
     if run_success:
-        chars_length, result = data[2:] 
+        chars_length, result = data[2:]
     else:
         eror_line_num = data[2:]
 
@@ -109,7 +114,7 @@ def writeMetaFile(mission_count: int, data: list) -> list:
     file_num = int(''.join(i for i in file_name if i.isdigit()))
 
     with open(FINAL_PATH, 'wb+') as f:
-        hex_byte_trans = lambda x: np.array(x).astype(np.uint8).tobytes()
+        def hex_byte_trans(x): return np.array(x).astype(np.uint8).tobytes()
 
         b_run_success = hex_byte_trans(run_success)
         b_file_num = hex_byte_trans(file_num)
@@ -122,30 +127,29 @@ def writeMetaFile(mission_count: int, data: list) -> list:
 
             f.write(b_chars_length)
             f.write(bytes(result, 'utf-8'))
-            print(b_run_success + b_file_num + b_chars_length + bytes(result, 'utf-8'))
+            print(b_run_success + b_file_num +
+                  b_chars_length + bytes(result, 'utf-8'))
 
         else:
             b_eror_line_num = hex_byte_trans(eror_line_num)
             f.write(b_eror_line_num)
             print(b_run_success + b_file_num + b_eror_line_num)
-        
-        
 
 
 def main(mission_count: int, script_num: int, line_num: int, txt: str, reset):
     path = "/home/pi/scripts_folder/"
     if isinstance(path, str) and not os.path.exists(path):
-        os.makedirs(path)  
-    
+        os.makedirs(path)
+
     file_name = 'script' + str(script_num) + '.py'
     script_path = path + file_name
 
     if reset or not os.path.exists(script_path):
         reset_file(script_path)
-
-    writing_file(script_num, line_num, txt, script_path)
-
-    if check_execute(file_name, txt, script_path):
+    # 19.9.2023 asaf h: file_num not in use, it is on file_path, changed also line 20.
+    writing_file(line_num, txt, script_path)
+    # 19.9.2023 asaf h: file_num not in use, it is on file_path, changed also line 95.
+    if check_execute(txt, script_path):
         import time
         time.sleep(0.5)
         info = execute_file(file_name, script_path)
@@ -153,10 +157,8 @@ def main(mission_count: int, script_num: int, line_num: int, txt: str, reset):
     else:
         FINAL_PATH = f"./outbox/{mission_count}/_metaUploadingFile.bin"
         with open(FINAL_PATH, 'wb+') as f:
-             f.write(np.array(line_num).astype(np.uint8).tobytes())
-             print(f'changed line: {line_num}, {np.array(line_num).astype(np.uint8).tobytes()}')
-
-
-
-if __name__ == "__main__":
-        main()
+            f.write(np.array(script_num).astype(np.uint8).tobytes())
+            f.write(np.array(line_num).astype(np.uint8).tobytes())
+            print(
+                f'changed line: {line_num}, {np.array(line_num).astype(np.uint8).tobytes()}')
+# 19.9.2023 asaf h: no need of if __name__ == "__main__":.
