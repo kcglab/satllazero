@@ -1,4 +1,4 @@
-'''
+"""
     @file star_finder.py
     @brief A file for the finding stars function.
 
@@ -16,22 +16,10 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
- '''
-from cv2 import cvtColor as cv2_cvtColor
-from cv2 import morphologyEx as cv2_morphologyEx
-from cv2 import GaussianBlur as cv2_GaussianBlur
-from cv2 import threshold as cv2_threshold
-from cv2 import adaptiveThreshold as cv2_adaptiveThreshold
-from cv2 import bitwise_and as cv2_bitwise_and
-from cv2 import bitwise_not as cv2_bitwise_not
-from cv2 import Sobel as cv2_Sobel
-from cv2 import circle as cv2_circle
-from cv2 import findContours as cv2_findContours
-from cv2 import dilate as cv2_dilate
-from cv2 import minEnclosingCircle as cv2_minEnclosingCircle
-from cv2 import THRESH_TOZERO, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY_INV, MORPH_CLOSE, MORPH_OPEN, RETR_EXTERNAL,\
-    CHAIN_APPROX_SIMPLE, COLOR_BGR2GRAY, THRESH_BINARY
+"""
 
+# 17.1.2024 asaf h: changed cv2 import cv2_ >> cv2.
+import cv2
 from copy import deepcopy
 # import matplotlib.pyplot as plt
 import numpy as np
@@ -75,7 +63,7 @@ class star_finder:
         if isinstance(gray_image, np.ndarray):
             self.gray_image = gray_image
         else:
-            self.gray_image = cv2_cvtColor(self.image, COLOR_BGR2GRAY)
+            self.gray_image = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
         self.sensitivity = sensitivity
         self.mask = self.get_threshold()
 
@@ -99,11 +87,11 @@ class star_finder:
                 r - the radius of the star.
                 brightness- the brightness of the star.
         """
-        contours, _ = cv2_findContours(
-            self.mask, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE)[-2:]
+        contours, _ = cv2.findContours(
+            self.mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[-2:]
         stars_data = []
         for cnt in contours:
-            (x, y), r = cv2_minEnclosingCircle(cnt)
+            (x, y), r = cv2.minEnclosingCircle(cnt)
             if r > 10:
                 continue
             x, y, r = int(x), int(y), int(r)
@@ -138,9 +126,9 @@ class star_finder:
         """
         star = self.gray_image[max(y - r, 0): y + r, max(x - r, 0): x + r]
         mask = np.zeros_like(self.gray_image)
-        mask = cv2_circle(mask, (x, y), r, (255, 255, 255), -1)
+        mask = cv2.circle(mask, (x, y), r, (255, 255, 255), -1)
         mask = mask[max(y - r, 0): y + r, max(x - r, 0): x + r]
-        cropped_star = cv2_bitwise_and(star, star, mask=mask)
+        cropped_star = cv2.bitwise_and(star, star, mask=mask)
         return cropped_star
 
     def get_threshold(self):
@@ -150,12 +138,12 @@ class star_finder:
         Returns:
             np.ndarray: Thresholded image.
         """
-        gray_image = cv2_GaussianBlur(
+        gray_image = cv2.GaussianBlur(
             self.gray_image, (5, 5), 0)
-        _, gray_image = cv2_threshold(
-            self.gray_image, self.sensitivity, 255, THRESH_TOZERO)
-        adaptive_mean = cv2_adaptiveThreshold(
-            gray_image, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY_INV, blockSize=5, C=1)
+        _, gray_image = cv2.threshold(
+            self.gray_image, self.sensitivity, 255, cv2.THRESH_TOZERO)
+        adaptive_mean = cv2.adaptiveThreshold(
+            gray_image, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, blockSize=5, C=1)
         return adaptive_mean
 
     def draw(self):
@@ -164,7 +152,7 @@ class star_finder:
         """
         self.draw_image = deepcopy(self.image)
         for star, center, radius, b in self.stars[:self.N_stars]:
-            cv2_circle(self.draw_image, center, radius + 4, (0, 255, 0), 2)
+            cv2.circle(self.draw_image, center, radius + 4, (0, 255, 0), 2)
 
     def get_data(self):
         """

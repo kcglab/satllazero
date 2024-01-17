@@ -17,11 +17,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  '''
-from cv2 import imwrite as cv2_imwrite
-from cv2 import imread as cv2_imread
-from cv2 import resize as cv2_resize
-from cv2 import INTER_AREA as cv2_INTER_AREA
-from cv2 import IMWRITE_JPEG_QUALITY
+
+# 17.1.2024 asaf h: changed cv2 import cv2_ >> cv2.
+import cv2
+
 from datetime import datetime
 import os
 import numpy as np
@@ -45,7 +44,7 @@ def get_image(path_or_image: str or np.ndarray, x=-1, dim=None) -> np.ndarray:
         image = path_or_image
     elif isinstance(path_or_image, int):
         path = f"./sent/{path_or_image}/Img.jpeg"
-        image = cv2_imread(path, -1)
+        image = cv2.imread(path, -1)
     else:
         raise TypeError("pass path or image")
     return image
@@ -62,9 +61,9 @@ def _read_image(path: str, x=-1, dim=None) -> np.ndarray:
     Returns:
         np.ndarray: Image.
         """
-    image = cv2_imread(path, x)
+    image = cv2.imread(path, x)
     if dim and len(dim):
-        image = cv2_resize(image, dim)
+        image = cv2.resize(image, dim)
     return image
 
 
@@ -173,11 +172,11 @@ def save_pic(pic_path: str, image: np.ndarray, compress_factor=95, dim=None) -> 
         None
     """
     if dim and len(dim) == 2:
-        image = cv2_resize(image, dim)
+        image = cv2.resize(image, dim)
     image_name = datetime.now().strftime("%Y-%m-%d %H-%M-%S-%f") + '.jpeg'
     image_path = os.path.join(pic_path, image_name)
-    compress = [IMWRITE_JPEG_QUALITY, compress_factor]
-    cv2_imwrite(image_path, image, compress)
+    compress = [cv2.IMWRITE_JPEG_QUALITY, compress_factor]
+    cv2.imwrite(image_path, image, compress)
 
 
 def resize(img: np.ndarray, dim=(60, 60)) -> np.ndarray:
@@ -190,5 +189,5 @@ def resize(img: np.ndarray, dim=(60, 60)) -> np.ndarray:
     Returns:
         np.ndarray: The resized image.
     """
-    new_img = cv2_resize(img, dim, Interpolation=cv2_INTER_AREA)
+    new_img = cv2.resize(img, dim, Interpolation=cv2.INTER_AREA)
     return new_img

@@ -17,13 +17,9 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  '''
-from cv2 import imwrite as cv2_imwrite
-from cv2 import imread as cv2_imread
-from cv2 import cvtColor as cv2_cvtColor
-from cv2 import COLOR_BGR2GRAY, cvtColor, IMWRITE_JPEG_QUALITY
-from cv2 import INTER_AREA as cv2_INTER_AREA
-from cv2 import getGaussianKernel as cv2_getGaussianKernel
-from cv2 import resize as cv2_resize
+
+# 17.1.2024 asaf h: changed cv2 import cv2_ >> cv2.
+import cv2
 import numpy as np
 import os
 from SatImageTaking import earth, star_finder, utils, LIT
@@ -272,7 +268,7 @@ def takePictureWithParameters(quality: int, width: int, height: int, Shutter: in
 
     os.system(command_with_parameters)
     read = f"{output}/Img.jpeg"
-    img = cv2_imread(read)
+    img = cv2.imread(read)
 
     print("Compressing")
     CompressImage(img, output, save_full=True)
@@ -297,7 +293,7 @@ def findStarsNoDarkEarth(img: np.ndarray, img_object: np.ndarray, sensitive=50, 
     Returns:
             detected_object (np.ndarray): An array containing the detected objects
     """
-    gray_image = cvtColor(img_object.clear_sky, COLOR_BGR2GRAY)
+    gray_image = cv2.cvtColor(img_object.clear_sky, cv2.COLOR_BGR2GRAY)
     star_detection = star_finder.star_finder(
         img, gray_image, sensitivity=sensitive, N_stars=n_stars)
     return star_detection
@@ -402,10 +398,10 @@ def crop_and_compress(mission_count: int, x: int, y: int, quality_factor=95, gra
     img = utils.get_image(mission_count)
     crop_img = utils.crop(img, x, y, qvga)
     if(gray):
-        crop_img = cv2_cvtColor(crop_img, COLOR_BGR2GRAY)
+        crop_img = cv2.cvtColor(crop_img, cv2.COLOR_BGR2GRAY)
     saveFinalImg(crop_img, 'Img', quality_factor)
     read = f"{output}/Img.jpeg"
-    cropped_img = cv2_imread(read)
+    cropped_img = cv2.imread(read)
     CompressImage(cropped_img, output, save_full=True)
     makeIcon(crop_img)
 
@@ -420,7 +416,7 @@ def decideIfGoodImage(img: np.ndarray) -> bool:
         int: 1 if the image is good, 0 otherwise.
     """
     img = utils.get_image(img)
-    img = cv2_cvtColor(img, COLOR_BGR2GRAY)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     w, h = img.shape
     black_percent = np.sum(img < 15)*100/(w*h)
     return 1 if black_percent > 95 else 0
@@ -449,9 +445,9 @@ def makeIcon(img_path: str, width=80, height=80, quality_factor=21, gray=0) -> N
 
     dim = (width, height)
     img = utils.get_image(img_path)
-    resized_image = cv2_resize(img, dim, interpolation=cv2_INTER_AREA)
+    resized_image = cv2.resize(img, dim, interpolation=cv2.INTER_AREA)
     if gray:
-        resized_image = cvtColor(resized_image, COLOR_BGR2GRAY)
+        resized_image = cv2.cvtColor(resized_image, cv2.COLOR_BGR2GRAY)
     saveFinalImg(resized_image, 'icon', quality_factor)
 
 
@@ -467,8 +463,8 @@ def saveFinalImg(star_detection: np.ndarray, name: str, compress_factor=95) -> N
         None.
     """
     FINAL_PATH = f"{output}/{name}.jpeg"
-    compress = [IMWRITE_JPEG_QUALITY, compress_factor]
-    cv2_imwrite(FINAL_PATH, star_detection, compress)
+    compress = [cv2.IMWRITE_JPEG_QUALITY, compress_factor]
+    cv2.imwrite(FINAL_PATH, star_detection, compress)
 
 
 def testing(missionType: int, x: int, y: int, quality_factor: int, gray: bool, qvga: bool, img_n=0) -> int:
@@ -515,9 +511,9 @@ def CompressImage(in_img: np.ndarray, path: str, max_size: int = 16 * LIT.KBYTE,
     """
     img = in_img
     if len(in_img.shape) > 2 and comp_gray:
-        img = cv2_cvtColor(img, COLOR_BGR2GRAY)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img = img / 255
-    g_ker = cv2_getGaussianKernel(5, -1)
+    g_ker = cv2.getGaussianKernel(5, -1)
     g_ker = g_ker @ g_ker.T
     lap_pyr = LIT.pyrLap(img, 7, g_ker)
     jp2_img = img[:, :, [2, 1, 0]] if len(img.shape) > 2 else img
@@ -536,3 +532,4 @@ def CompressImage(in_img: np.ndarray, path: str, max_size: int = 16 * LIT.KBYTE,
 
 mission_Table = {0: TakePhotoStarAnalysis, 1: takePictureWithParameters,
                  2: crop_and_compress, 3: makeIcon, 4: StarAnalysis, 5: testing}
+

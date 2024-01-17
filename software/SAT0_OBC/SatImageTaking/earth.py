@@ -17,21 +17,9 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  '''
-from cv2 import cvtColor as cv2_cvtColor
-from cv2 import morphologyEx as cv2_morphologyEx
-from cv2 import GaussianBlur as cv2_GaussianBlur
-from cv2 import threshold as cv2_threshold
-from cv2 import adaptiveThreshold as cv2_adaptiveThreshold
-from cv2 import bitwise_and as cv2_bitwise_and
-from cv2 import bitwise_not as cv2_bitwise_not
-from cv2 import Sobel as cv2_Sobel
-from cv2 import circle as cv2_circle
-from cv2 import findContours as cv2_findContours
-from cv2 import dilate as cv2_dilate
-from cv2 import minEnclosingCircle as cv2_minEnclosingCircle
-from cv2 import THRESH_TOZERO, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY_INV, MORPH_CLOSE, MORPH_OPEN, RETR_EXTERNAL,\
-    CHAIN_APPROX_SIMPLE, COLOR_BGR2GRAY
 
+# 17.1.2024 asaf h: changed cv2 import cv2_ >> cv2.
+import cv2
 import numpy as np
 
 from SatImageTaking import utils
@@ -63,7 +51,7 @@ class earth:
         """Constructor for earth class. Initializes the attributes of the class"""
         self.mask = None
         self.image = utils.get_image(path_or_image, dim=dim)
-        self.gray_image = cv2_cvtColor(self.image, COLOR_BGR2GRAY)
+        self.gray_image = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
         self.clear_sky, self.clear_earth, self.earth_mask = self.get_mask()
         self.is_earth = self._is_earth()
         self.earth_percent = self._earth_percent()
@@ -80,21 +68,21 @@ class earth:
         Returns:
                 bool: True if the image contain Earth at night, False otherwise.
         """
-        gray_image = cv2_GaussianBlur(
+        gray_image = cv2.GaussianBlur(
             self.gray_image, (3, 3), 0)
-        _, gray_image = cv2_threshold(
-            self.gray_image, 80, 255, THRESH_TOZERO)
-        mask = cv2_adaptiveThreshold(
-            gray_image, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY_INV, blockSize=3, C=5)
+        _, gray_image = cv2.threshold(
+            self.gray_image, 80, 255, cv2.THRESH_TOZERO)
+        mask = cv2.adaptiveThreshold(
+            gray_image, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, blockSize=3, C=5)
         kernel = np.ones((5, 5), np.uint8)
-        mask = cv2_morphologyEx(mask, MORPH_CLOSE, kernel)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
 
-        contours, _ = cv2_findContours(
-            mask, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE)[-2:]
+        contours, _ = cv2.findContours(
+            mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[-2:]
 
         self.mask = mask
         for cnt in contours:
-            (x, y), r = cv2_minEnclosingCircle(cnt)
+            (x, y), r = cv2.minEnclosingCircle(cnt)
             if r > 60:
                 return True
         return False
@@ -104,17 +92,17 @@ class earth:
 
         Returns:
             np.ndarray: image that contains the curve o the Earth"""
-        gauss = cv2_GaussianBlur(self.gray_image, (7, 7), 0)
+        gauss = cv2.GaussianBlur(self.gray_image, (7, 7), 0)
 
-        _, gauss = cv2_threshold(gauss, 80, 255, THRESH_TOZERO)
+        _, gauss = cv2.threshold(gauss, 80, 255, cv2.THRESH_TOZERO)
 
-        adaptive_mean = cv2_adaptiveThreshold(gauss, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY_INV,
+        adaptive_mean = cv2.adaptiveThreshold(gauss, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV,
                                               blockSize=201, C=3)
         kernel = np.ones((5, 5), np.uint8)
-        adaptive_mean = cv2_morphologyEx(
-            adaptive_mean, MORPH_CLOSE, kernel)
-        adaptive_mean = cv2_morphologyEx(
-            adaptive_mean, MORPH_OPEN, kernel)
+        adaptive_mean = cv2.morphologyEx(
+            adaptive_mean, cv2.MORPH_CLOSE, kernel)
+        adaptive_mean = cv2.morphologyEx(
+            adaptive_mean, cv2.MORPH_OPEN, kernel)
         return adaptive_mean
 
     def _is_earth(self):
@@ -142,28 +130,28 @@ class earth:
 
     def _get_earth_mask(self):
         """Returns the earth mask in the image"""
-        gauss = cv2_GaussianBlur(self.gray_image, (5, 5), 0)
+        gauss = cv2.GaussianBlur(self.gray_image, (5, 5), 0)
 
-        _, gray_image = cv2_threshold(
-            gauss, 30, 255, THRESH_TOZERO)
+        _, gray_image = cv2.threshold(
+            gauss, 30, 255, cv2.THRESH_TOZERO)
 
-        thresh = cv2_Sobel(src=gray_image, ddepth=-1, dx=1, dy=1, ksize=11)
+        thresh = cv2.Sobel(src=gray_image, ddepth=-1, dx=1, dy=1, ksize=11)
 
         kernel = np.ones((10, 10), np.uint8)
-        thresh = cv2_morphologyEx(thresh, MORPH_CLOSE, kernel)
+        thresh = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
         kernel = np.ones((20, 20), np.uint8)
-        thresh = cv2_morphologyEx(thresh, MORPH_OPEN, kernel)
+        thresh = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel)
         kernel = np.ones((40, 40), np.uint8)
-        thresh = cv2_morphologyEx(thresh, MORPH_CLOSE, kernel)
+        thresh = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
         kernel = np.ones((70, 70), np.uint8)
-        thresh = cv2_morphologyEx(thresh, MORPH_OPEN, kernel)
+        thresh = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel)
 
         return thresh
 
     def draw_black_cir(self, contours):
         """This function helps to eliminate all the stars in the sky or fill the holes in Earth mask"""
         for center, radius in contours:
-            cv2_circle(self.mask, center, radius, (0, 0, 0), -1)
+            cv2.circle(self.mask, center, radius, (0, 0, 0), -1)
 
     def _get_cir_contours(self):
         """
@@ -173,11 +161,11 @@ class earth:
             list: A list containing the contours of the circles in the image
         """
         height, width = self.gray_image.shape
-        contours, _ = cv2_findContours(
-            self.mask, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE)[-2:]
+        contours, _ = cv2.findContours(
+            self.mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[-2:]
         all_cir = []
         for cnt in contours:
-            (x, y), r = cv2_minEnclosingCircle(cnt)
+            (x, y), r = cv2.minEnclosingCircle(cnt)
             if r < int(max(height, width) * 0.3):
                 x, y, r = int(x), int(y), int(r)
                 center = x, y
@@ -186,10 +174,10 @@ class earth:
 
     def fill_earth(self):
         """Fill all the little holes in Earth mask image."""
-        self.mask = cv2_bitwise_not(self.mask)
+        self.mask = cv2.bitwise_not(self.mask)
         contours = self._get_cir_contours()
         self.draw_black_cir(contours)
-        self.mask = cv2_bitwise_not(self.mask)
+        self.mask = cv2.bitwise_not(self.mask)
 
     def get_mask(self):
         """
@@ -203,18 +191,18 @@ class earth:
         self.draw_black_cir(contours)
 
         kernel = np.ones((5, 5), np.uint8)
-        self.mask = cv2_dilate(self.mask, kernel, iterations=2)
+        self.mask = cv2.dilate(self.mask, kernel, iterations=2)
 
         self.fill_earth()
 
         kernel = np.ones((15, 15), np.uint8)
-        self.mask = cv2_dilate(self.mask, kernel, iterations=1)
+        self.mask = cv2.dilate(self.mask, kernel, iterations=1)
 
-        clear_earth = cv2_bitwise_and(
+        clear_earth = cv2.bitwise_and(
             self.image, self.image, mask=self.mask)
 
-        mask = cv2_bitwise_not(self.mask)
-        clear_sky = cv2_bitwise_and(
+        mask = cv2.bitwise_not(self.mask)
+        clear_sky = cv2.bitwise_and(
             self.image, self.image, mask=mask)
 
         return clear_sky, clear_earth, self.mask
